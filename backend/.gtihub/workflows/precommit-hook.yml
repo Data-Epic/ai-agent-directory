@@ -1,15 +1,9 @@
 name: Pre-commit Hooks
-on:
-  pull_request:
-    branches:
-      - main
-      - staging
 
+on:
   push:
-    branches:
-      - main
-      - staging
-      
+  pull_request:
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -28,7 +22,7 @@ jobs:
           poetry config virtualenvs.create false
           poetry install --no-interaction --no-ansi
 
-      - name: run pre-commit
+      - name: Run pre-commit
         run: pre-commit run --show-diff-on-failure --color=always --all-files
 
       - name: Run tests
