@@ -30,6 +30,9 @@ repos:
     rev: v3.3.7
     hooks:
       - id: pylint
+        language: system
+        entry: poetry run pylint
+
 
   - repo: local
     hooks:
