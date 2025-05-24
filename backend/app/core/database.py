@@ -1,3 +1,9 @@
+"""
+This module sets up the database connection using SQLAlchemy and provides
+a session factory for database operations
+"""
+
+
 import os
 
 from dotenv import load_dotenv

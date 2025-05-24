@@ -18,6 +18,7 @@ alembic = "^1.15.2"
 httpx = "^0.28.1"
 bcrypt = "^4.3.0"
 pre-commit = "^4.2.0"
+pylint = "^3.3.7"
 
 
 [build-system]
