@@ -26,4 +26,4 @@ class Agent(BaseModel):  # Xteristics: Can be highlighted, reviewed, and rated b
     ratings = relationship("Rating", back_populates="agent", cascade="all, delete")
 
 
-init_db() 
+init_db()
