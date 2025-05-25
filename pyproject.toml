@@ -8,6 +8,10 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "requests (>=2.32.3,<3.0.0)",
+    "beautifulsoup4 (>=4.13.4,<5.0.0)",
+    "selenium (>=4.33.0,<5.0.0)",
+    "webdriver-manager (>=4.0.2,<5.0.0)"
 ]
 
 
