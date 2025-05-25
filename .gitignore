@@ -6,6 +6,7 @@ venv/
 
 # Poetry cache
 .cache/pypoetry/
+*poetry.lock
 
 # Python bytecode files
 __pycache__/
