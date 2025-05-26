@@ -4,14 +4,15 @@ a session factory for database operations
 """
 
 
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
+from dotenv import load_dotenv
+from pathlib import Path
 import os
 
-from dotenv import load_dotenv
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+path = Path("../../../.env")
 
-load_dotenv()
+load_dotenv(dotenv_path=path)
 
 DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
@@ -27,3 +28,25 @@ engine = create_engine(DB_URL)
 SessionLocal = sessionmaker(autoflush=False, atutocomit=False, bind=engine)
 
 Base = declarative_base()
+
+
+class BaseModel(Base):
+    __abstract__ = True
+    __allow_unmapped__ = True
+
+    id = Column(Integer, primary_key=True, autoincrement=True, index=True)
+
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
+def init_db():
+    try:
+        Base.metadata.create_all(engine)
+    except Exception as e:
+        print(f"{e}")
