@@ -39,10 +39,12 @@ def fetch_existing_records(conn):
 
 def delta_check(new_df, existing_df):
     # Merge and check for differences
-    merged = new_df.merge(existing_df, on=["name", "homepage_url"], how="left", suffixes=('', '_existing'))
+    merged = new_df.merge(
+        existing_df, on=["name", "homepage_url"], how="left", suffixes=("", "_existing")
+    )
     changed = merged[
-        (merged['email'] != merged['email_existing']) |
-        (merged['phone'] != merged['phone_existing'])
+        (merged["email"] != merged["email_existing"])
+        | (merged["phone"] != merged["phone_existing"])
     ]
     return changed[new_df.columns]  # Only updated/new rows
 
@@ -50,18 +52,21 @@ def delta_check(new_df, existing_df):
 def upsert_records(conn, df):
     cursor = conn.cursor()
     for _, row in df.iterrows():
-        cursor.execute('''
+        cursor.execute(
+            """
             INSERT INTO agents (name, homepage_url, email, phone)
             VALUES (?, ?, ?, ?)
             ON CONFLICT(name, homepage_url)
             DO UPDATE SET email=excluded.email, phone=excluded.phone
-        ''', (row['name'], row['homepage_url'], row['email'], row['phone']))
+        """,
+            (row["name"], row["homepage_url"], row["email"], row["phone"]),
+        )
     conn.commit()
 
 
 def etl_job(source_path):
     df = read_data(source_path)
-    
+
     if needs_transformation(df):
         df = transform_data(df)
 
@@ -74,5 +79,6 @@ def etl_job(source_path):
             print(f"Upserted {len(delta_df)} records.")
         else:
             print("No changes detected. Idempotent run.")
+
 
 etl_job("agents.csv")
