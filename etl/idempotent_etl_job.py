@@ -4,19 +4,12 @@ Email: iyanuvicky@gmail.com
 Github: https://github.com/Iyanuvicky22/Projects
 """
 
-import pandas as pd
 from pathlib import Path
 import os
 from datetime import datetime
-import logging
-# from model import load_data
-
-
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
-)
-logger = logging.getLogger(__name__)
-
+from models import load_data
+from logger_config import logger
+import pandas as pd
 
 scraped_data_source = r"C:\Users\APIN PC\OneDrive\Documents\DS\DE_Inter\data_epic_capstone\etl\data\ai_tools_scraped.json"
 seed_data_source = r"C:\Users\APIN PC\OneDrive\Documents\DS\DE_Inter\data_epic_capstone\etl\data\seeded_ai_agents.csv"
@@ -151,16 +144,16 @@ def transform_data(df: pd.DataFrame, source=None) -> pd.DataFrame:
             if df["updated_at"] is not None:
                 pass
             else:
-                df["updated_at"] = created_day
+                df["updated_at"] = None
         else:
-            df["updated_at"] = created_day
+            df["updated_at"] = None
 
         if "trending" not in df.columns:
             df["trending"] = None
         else:
             df["trending"] = df["trending"].replace(
                 {"Low": False, "Medium": True, "High": True}
-            )
+                )
 
         trans_df = df.rename(columns={"url": "homepage_url", "tags": "category"})
 
@@ -212,10 +205,11 @@ def run_basic_etl() -> pd.DataFrame:
     # Merge Datasets
     final_df = merging_dfs(trans_seed_df, trans_scraped_df)
 
-    # # Load
-    # load_data(final_df)
+    # Load
+    load_data(final_df)
 
     return final_df
 
 
-run_basic_etl()
+if __name__ == '__main__':
+    run_basic_etl()

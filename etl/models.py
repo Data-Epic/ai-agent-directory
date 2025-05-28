@@ -11,21 +11,21 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine, Column, String, Text, Boolean, DateTime, func, Integer
 from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy.exc import SQLAlchemyError
-from idempotent_etl_job import logger, run_basic_etl
+from logger_config import logger
 import pandas as pd
 
-# load_dotenv(dotenv_path=".env")
+load_dotenv(dotenv_path=".env")
 
-## DB Setup
-# DB_USER = os.getenv("DB_USER")
-# DB_PASSWORD = os.getenv("DB_PASSWORD")
-# DB_HOST = os.getenv("DB_HOST")
-# DB_PORT = os.getenv("DB_PORT")
-# DB_NAME = os.getenv("DB_NAME")
+# DB Setup
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_HOST = os.getenv("DB_HOST")
+DB_PORT = os.getenv("DB_PORT")
+DB_NAME = os.getenv("DB_NAME")
 
-# DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
-DB_URL = f"postgresql://{"postgres"}:{"apotiks"}@{"localhost"}:{"5432"}/{"db"}"
+# DB_URL = f"postgresql://{"postgres"}:{"apotiks"}@{"localhost"}:{"5432"}/{"db"}"
 
 Base = declarative_base()
 
@@ -36,7 +36,7 @@ def connect_db():
     """
     try:
         engine = create_engine(DB_URL)
-        Session = sessionmaker(bind=engine)
+        Session = sessionmaker(bind=engine, autoflush=True)
         Base.metadata.create_all(engine)
         logger.info("Database succesfully connected to.")
         return Session, engine
@@ -47,7 +47,7 @@ def connect_db():
 class Agent(Base):
     __tablename__ = "agents"
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, autoincrement=False)
     name = Column(String, nullable=False, index=True)
     description = Column(Text)
     homepage_url = Column(String)
@@ -79,8 +79,4 @@ def load_data(df: pd.DataFrame):
                 )
                 session.add(agent)
         session.commit()
-
-
-if __name__ == '__main__':
-    data = run_basic_etl()
-    load_data(df=data)
+        logger.info("Data successfully loaded in database!")
