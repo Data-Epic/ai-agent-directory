@@ -41,6 +41,7 @@ class AIToolsScraper:
         print_tools:
         close:
     """
+
     def __init__(self, headless=True, wait_time=10):
         self.wait_time = wait_time
         self.setup_driver(headless)

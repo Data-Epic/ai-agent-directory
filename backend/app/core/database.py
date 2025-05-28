@@ -4,7 +4,7 @@ a session factory for database operations
 """
 
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, Column
 from sqlalchemy.orm import sessionmaker, declarative_base
 from dotenv import load_dotenv
 from pathlib import Path
