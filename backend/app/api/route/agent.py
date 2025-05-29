@@ -1,12 +1,14 @@
 from fastapi import APIRouter, Depends, HTTPException
-from database import get_db
-
+from app.database import get_db
+from sqlalchemy.orm import Session
+from app import schemas
+from typing import List
 
 router = APIRouter()
 
 
-@router.get("/agent")
-def list_agents(category: str = None, trending: bool = False or True, db: Depends = get_db):
+@router.get("/agent", response_model=List[schemas.AgentOut])
+def list_agents(category: str = None, trending: bool = False or True, db: Session = Depends(get_db)):
     """
     List all agents.
     """
@@ -24,19 +26,11 @@ def list_agents(category: str = None, trending: bool = False or True, db: Depend
 
 
 @router.get("/agent/{agent_id}")
-def get_agent(agent_id: int):
+def get_agent(agent_id: int, db: Session = Depends(get_db)):
     """
     Get details of a specific agent by ID.
     """
-    # * Sample data for agents
-    agents = {
-        1: {"id": 1, "name": "Agent 1", "category": "Category A", "trending": True},
-        2: {"id": 2, "name": "Agent 2", "category": "Category B", "trending": False},
-        3: {"id": 3, "name": "Agent 3", "category": "Category C", "trending": True}
-    }
-    
-    agent = agents.get(agent_id)
+    agent = db.query(Agent).filter(Agent.id == agent_id).first()
     if not agent:
         raise HTTPException(status_code=404, detail="Agent not found")
-    
     return agent
