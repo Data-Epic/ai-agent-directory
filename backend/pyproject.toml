@@ -19,6 +19,8 @@ httpx = "^0.28.1"
 bcrypt = "^4.3.0"
 pre-commit = "^4.2.0"
 pylint = "^3.3.7"
+faker = "^37.3.0"
+passlib = "^1.7.4"
 
 
 [build-system]
