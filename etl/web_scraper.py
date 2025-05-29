@@ -5,10 +5,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from bs4 import BeautifulSoup
+from datetime import datetime
+
 import json
 import time
 import random
 import logging
+
+CURRENT_TIME = datetime.now().strftime("%d-%m-%Y")
 
 # Setup logging
 logging.basicConfig(
@@ -574,7 +578,7 @@ class AIToolsScraper:
 
         return unique_tools
 
-    def save_tools(self, tools, filename="../etl/data/ai_tools_scraped.json"):
+    def save_tools(self, tools, filename=f"../etl/data/{CURRENT_TIME}_ai_tools_scraped.json"):
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(tools, f, indent=2, ensure_ascii=False)
         logger.info(f"Saved {len(tools)} tools to {filename}")

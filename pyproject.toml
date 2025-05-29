@@ -14,7 +14,9 @@ dependencies = [
     "selenium (>=4.33.0,<5.0.0)",
     "webdriver-manager (>=4.0.2,<5.0.0)",
     "pandas (>=2.2.3,<3.0.0)",
-    "black[jupyter] (>=25.1.0,<26.0.0)"
+    "black[jupyter] (>=25.1.0,<26.0.0)",
+    "pytest (>=8.3.5,<9.0.0)",
+    "pytest-cov (>=6.1.1,<7.0.0)"
 ]
 
 

@@ -40,6 +40,16 @@
     "page": 1
   },
   {
+    "name": "Dropmagic",
+    "description": "Build Shopify stores from AliExpress or product URLs. Generate high-converting pages, brand assets, and multilingual copy in minutes with 1-click Shopify export.",
+    "url": "https://link.aitoolsdirectory.com/dropmagic",
+    "tags": [
+      "Marketing"
+    ],
+    "pricing": "Freemium",
+    "page": 1
+  },
+  {
     "name": "Blaze",
     "description": "Blaze AI combines content generation and marketing automation tools to help small businesses manage their digital presence. The platform handles content creation, social media scheduling, and brand consistency across channels.",
     "url": "https://link.aitoolsdirectory.com/blaze",
@@ -103,6 +113,18 @@
     "page": 1
   },
   {
+    "name": "Aragon",
+    "description": "Aragon's AI Headshot Generator transforms your selfies into stunning and personalized headshots in just 90 minutes. Stand out with premium-quality photos, all without the need for a professional photoshoot.",
+    "url": "https://link.aitoolsdirectory.com/aragon",
+    "tags": [
+      "#avatar #headshots",
+      "Social Media",
+      "Social Media#avatar #headshots"
+    ],
+    "pricing": "Paid",
+    "page": 1
+  },
+  {
     "name": "n8n",
     "description": "n8n is an open-source workflow automation tool that allows you to connect various apps and services together. Its visual, node-based interface makes it easy to build powerful automations with AI integrations from OpenAI and Hugging Face, making it ideal for automating tasks, improving workflows, and building intelligent applications.",
     "url": "https://link.aitoolsdirectory.com/n8n",
@@ -149,8 +171,8 @@
     "url": "https://link.aitoolsdirectory.com/userevaluation",
     "tags": [
       "#UX #Research",
-      "Marketing#UX #Research",
-      "Marketing"
+      "Marketing",
+      "Marketing#UX #Research"
     ],
     "pricing": "Paid",
     "page": 1
@@ -200,8 +222,8 @@
     "description": "Browse AI simplifies data extraction from websites. No coding required, it allows you to scrape data, monitor changes, integrate with other apps, schedule extraction, create APIs, and automate complex processes.",
     "url": "https://link.aitoolsdirectory.com/browseai",
     "tags": [
-      "#web scraping #nocode",
-      "Automation"
+      "Automation",
+      "#web scraping #nocode"
     ],
     "pricing": "Freemium",
     "page": 1
@@ -252,9 +274,9 @@
     "description": "SERP-winning content writing with a click. From researching to optimizing articles—it's about driving traffic. Customize, refine, and improve your work with AI. Write and optimize your content in any language, leveraging real-time metrics for structure, word count, NLP-ready keywords, and images.",
     "url": "https://link.aitoolsdirectory.com/surferseo",
     "tags": [
-      "SEO",
+      "#SEO #writing",
       "SEO#SEO #writing",
-      "#SEO #writing"
+      "SEO"
     ],
     "pricing": "Paid",
     "page": 1
@@ -286,8 +308,8 @@
     "description": "AI-driven, one-click presentation wizard that personalizes slides, streamlines layouts, and enriches content for standout results.",
     "url": "https://link.aitoolsdirectory.com/decktopus",
     "tags": [
-      "#presentations #design",
-      "Productivity"
+      "Productivity",
+      "#presentations #design"
     ],
     "pricing": "Paid",
     "page": 1
@@ -307,9 +329,9 @@
     "description": "Create unlimited royalty-free songs by simply selecting a mood, genre and length. Browser-based music tool that creates royalty-free tracks on demand, built for content creators and musicians who need fast, editable music without licensing headaches.",
     "url": "https://link.aitoolsdirectory.com/soundraw",
     "tags": [
-      "Music#AImusic #sounddesign",
       "#AImusic #sounddesign",
-      "Music"
+      "Music",
+      "Music#AImusic #sounddesign"
     ],
     "pricing": "Freemium",
     "page": 1
@@ -319,8 +341,8 @@
     "description": "AI ad creation is made easy with Quickads AI. Suitable for all businesses. Features include multi-format ads, targeted generation, virtual product photography, customizable layouts, messaging variations, and automated error detection.",
     "url": "https://link.aitoolsdirectory.com/quickads",
     "tags": [
-      "Advertising",
-      "#Ad Creation #Ad Optimization"
+      "#Ad Creation #Ad Optimization",
+      "Advertising"
     ],
     "pricing": "Paid",
     "page": 1
@@ -330,8 +352,8 @@
     "description": "Thoughtly builds human-like AI voice agents for seamless call handling, analytics, and lead qualification. Perfect for businesses needing automated yet human-centered customer interactions.",
     "url": "https://link.aitoolsdirectory.com/thoughtly",
     "tags": [
-      "#VoiceAI #AIAgents",
       "Automation",
+      "#VoiceAI #AIAgents",
       "Automation#VoiceAI #AIAgents"
     ],
     "pricing": "Paid",
@@ -342,9 +364,9 @@
     "description": "Multiple tools in one. A productivity powerhouse that unifies task management and workflow creation into a sleek tool, offering dynamic workspace formats, intelligent note-taking, and a diligent AI assistant for your professional life.",
     "url": "https://link.aitoolsdirectory.com/taskade",
     "tags": [
-      "Productivity#task manager",
+      "#task manager",
       "Productivity",
-      "#task manager"
+      "Productivity#task manager"
     ],
     "pricing": "Paid",
     "page": 1
@@ -435,8 +457,8 @@
     "description": "Icon is a creative production platform that helps businesses generate static ads, video ads, and UGC at scale for $39/month, replacing tools like Canva, CapCut, and ChatGPT.",
     "url": "https://link.aitoolsdirectory.com/icon",
     "tags": [
-      "Advertising",
-      "#AiAds #AdGeneration #UGC"
+      "#AiAds #AdGeneration #UGC",
+      "Advertising"
     ],
     "pricing": "Paid",
     "page": 1
@@ -496,9 +518,9 @@
     "description": "Use AI to scrape content from any website, find local busıness prospects in a few clicks using Google Maps, monitor Amazon for updates on specific products, or bulk create screenshots in any screen size to use in your marketing materials or software.",
     "url": "https://link.aitoolsdirectory.com/hexomatic",
     "tags": [
-      "#web scraping",
       "Automation#web scraping",
-      "Automation"
+      "Automation",
+      "#web scraping"
     ],
     "pricing": "Paid",
     "page": 1
@@ -539,8 +561,8 @@
     "description": "Voice generator for professional-quality audio. Use Murf's lifelike AI voices for podcasts, videos, and all your professional presentations.",
     "url": "https://link.aitoolsdirectory.com/murf",
     "tags": [
-      "Text-to-Voice",
       "#voice",
+      "Text-to-Voice",
       "Text-to-Voice#voice"
     ],
     "pricing": "Freemium",
@@ -561,8 +583,8 @@
     "description": "Build functional web apps by describing them in plain English. Sysarchitect generates source code, interactive mockups, and deployable projects—no coding, no dragging, just decisions.",
     "url": "https://www.sysarchitect.ai/",
     "tags": [
-      "#aicoding #webdevelopment",
-      "NoCode"
+      "NoCode",
+      "#aicoding #webdevelopment"
     ],
     "pricing": "Freemium",
     "page": 1
@@ -592,9 +614,9 @@
     "description": "Apify is a no-code platform that simplifies web scraping for AI model training. It integrates with tools like LangChain and Pinecone, streamlining data collection from the web. This enhances AI efficiency, delivers accurate insights, and supports customized AI tool development.",
     "url": "https://link.aitoolsdirectory.com/apify",
     "tags": [
-      "#web scraping #API",
       "Productivity#web scraping #API",
-      "Productivity"
+      "Productivity",
+      "#web scraping #API"
     ],
     "pricing": "Freemium",
     "page": 1
@@ -614,8 +636,8 @@
     "description": "An AI video creation tool offering text-to-video conversion with lifelike avatars and 100+ voiceovers. With 200+ templates and 23+ languages supported, Vidnoz facilitates quick, affordable, and quality video content production.",
     "url": "https://link.aitoolsdirectory.com/vidnoz",
     "tags": [
-      "Generative Video",
-      "#Ai video #Ai voice"
+      "#Ai video #Ai voice",
+      "Generative Video"
     ],
     "pricing": "Freemium",
     "page": 1
@@ -657,8 +679,8 @@
     "description": "AI anime art generator that converts plain text or photo into anime art with simplicity, speed, and high artistry. Ideal for anime enthusiasts and those without drawing or AI expertise.",
     "url": "https://link.aitoolsdirectory.com/animegenius",
     "tags": [
-      "Generative Art",
-      "#Anime Art #Digital Art"
+      "#Anime Art #Digital Art",
+      "Generative Art"
     ],
     "pricing": "Freemium",
     "page": 1
@@ -781,8 +803,8 @@
     "description": "Adobe Firefly offers a versatile, creator-focused Generative AI for content creation and editing across various mediums. Generating custom vectors, brushes, and textures with just a few words or a sketch",
     "url": "https://link.aitoolsdirectory.com/firefly",
     "tags": [
-      "Generative Art",
-      "#photography #AI Art"
+      "#photography #AI Art",
+      "Generative Art"
     ],
     "pricing": "Free",
     "page": 1
@@ -792,9 +814,9 @@
     "description": "Research keywords, create content briefs and templates, write and optimize your articles. Create custom AI templates and pre-made SEO-focused tools to win at content marketing. Find industry-specific data points relevant to your topic and inject them into relevant content.",
     "url": "https://link.aitoolsdirectory.com/frase",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Paid",
     "page": 1
@@ -804,9 +826,9 @@
     "description": "Write unique and best-in-class content for blogs, articles, ads, products and websites in just a few clicks. Create content that converts with 50+ templates.",
     "url": "https://link.aitoolsdirectory.com/simplified",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Freemium",
     "page": 1
@@ -816,8 +838,8 @@
     "description": "Tools for professional-quality podcasting without advanced gear or skills. Key features include speech enhancement, mic check, browser-based editing, AI transcription, remote recording, and royalty-free music.",
     "url": "https://link.aitoolsdirectory.com/adobe-podcast",
     "tags": [
-      "Podcasting",
-      "#VoiceoverTools #AudioEditing"
+      "#VoiceoverTools #AudioEditing",
+      "Podcasting"
     ],
     "pricing": "Freemium",
     "page": 1
@@ -928,8 +950,8 @@
     "description": "Let AI analyze your tweets, edit content, rewrite winning tweets, and schedule the best stuff on X. Get access to millions of viral tweets, AI-powered content suggestions, an AI lead finder, scheduling and advanced automation tools.",
     "url": "https://link.aitoolsdirectory.com/tweethunter",
     "tags": [
-      "Social Media",
       "Social Media#twitter",
+      "Social Media",
       "#twitter"
     ],
     "pricing": "Paid",
@@ -950,8 +972,8 @@
     "description": "Hubspot CRM's new AI tools are all about power and efficiency. Optimize content at scale, create new content, discover new leads, perform complex reporting, and write Ogilvy-level marketing campaigns and emails.",
     "url": "https://link.aitoolsdirectory.com/hubspot-ai",
     "tags": [
-      "#CRM",
       "Marketing#CRM",
+      "#CRM",
       "Marketing"
     ],
     "pricing": "Freemium",
@@ -1025,8 +1047,8 @@
     "description": "Programmatic content creation for niche site owners, digital agencies, and SaaS startups. SEOmatic's no-code solution simplifies the process of generating SEO-friendly pages on a large scale.",
     "url": "https://link.aitoolsdirectory.com/seomatic",
     "tags": [
-      "SEO#programmatic #copywriting",
       "#programmatic #copywriting",
+      "SEO#programmatic #copywriting",
       "SEO"
     ],
     "pricing": "Paid",
@@ -1039,18 +1061,18 @@
     "tags": [
       "Generative Art"
     ],
-    "page": 1
+    "page": 2
   },
   {
     "name": "Biread",
     "description": "BiRead’s AI-powered tool enhances language learning by offering personalized insights, highlighting key phrases, and boosting comprehension.",
     "url": "https://link.aitoolsdirectory.com/biread",
     "tags": [
-      "#LanguageLearning #LanguageAI",
-      "Education"
+      "Education",
+      "#LanguageLearning #LanguageAI"
     ],
     "pricing": "Freemium",
-    "page": 1
+    "page": 2
   },
   {
     "name": "Magai",
@@ -1067,8 +1089,8 @@
     "description": "With powerful integrations, customizable workflows, and AI-powered features like drafting content and generating tables, Coda AI takes your work to the next level.",
     "url": "https://link.aitoolsdirectory.com/coda",
     "tags": [
-      "#docs #management",
       "Productivity#docs #management",
+      "#docs #management",
       "Productivity"
     ],
     "pricing": "Freemium",
@@ -1091,9 +1113,9 @@
     "description": "Your content marketing toolbox with keyword research, SERP analysis, and writing engine all rolled into one smart package.",
     "url": "https://link.aitoolsdirectory.com/neuraltext",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1134,9 +1156,9 @@
     "description": "Link Whisper’s AI-powered tool identifies unlinked products in your content, highlighting missed affiliate opportunities in a visual sitemap. With OpenAI integration, it streamlines internal linking for SEO",
     "url": "https://link.aitoolsdirectory.com/linkwhisperai",
     "tags": [
-      "SEO#internalLinking #WordPress",
       "#internalLinking #WordPress",
-      "SEO"
+      "SEO",
+      "SEO#internalLinking #WordPress"
     ],
     "pricing": "Freemium",
     "page": 2
@@ -1146,8 +1168,8 @@
     "description": "Write, schedule, and optimize posts for X (Twitter) and LinkedIn. Generate engaging content based on your topics and use AI-smart growth tools to boost your followers and reach.",
     "url": "https://link.aitoolsdirectory.com/postwise",
     "tags": [
-      "Social Media",
       "Social Media#twitter",
+      "Social Media",
       "#twitter"
     ],
     "pricing": "Paid",
@@ -1158,9 +1180,9 @@
     "description": "Merlin AI is a Chrome extension that brings AI-powered assistance to your browser, helping you create social media content, summarize videos and blogs, chat with websites, debug code, write emails, and respond to Google queries. It integrates with platforms like LinkedIn, Gmail, and X, making tasks like research, coding, and marketing easier with top AI models like GPT-4 and Claude",
     "url": "https://link.aitoolsdirectory.com/merlin",
     "tags": [
+      "#chatGPT #chatbot",
       "Chat",
-      "Chat#chatGPT #chatbot",
-      "#chatGPT #chatbot"
+      "Chat#chatGPT #chatbot"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1268,9 +1290,9 @@
     "description": "Riverside's free drag-and-drop transcription tool uses advanced AI from OpenAI to transcribe audio or video files in over 100 languages, with a user-friendly interface capable of processing hour-long interviews in less than 2 minutes",
     "url": "https://link.aitoolsdirectory.com/riverside",
     "tags": [
-      "#podcasting #video",
+      "Audio",
       "Audio#podcasting #video",
-      "Audio"
+      "#podcasting #video"
     ],
     "pricing": "Free",
     "page": 2
@@ -1290,8 +1312,8 @@
     "description": "Grammarly’s powerful AI features can supercharge your writing productivity. Fine-tune your tone, get on-point draft suggestions, rework your content, and create killer email management flows.",
     "url": "https://link.aitoolsdirectory.com/grammarly",
     "tags": [
-      "#writing #assistant",
-      "Productivity"
+      "Productivity",
+      "#writing #assistant"
     ],
     "pricing": "Freemium",
     "page": 2
@@ -1301,8 +1323,8 @@
     "description": "Descript's transforms complex audio and video editing into a text-editing task. It can rapidly label speakers, clone voices realistically with Overdub (it removes filler words as well), produce speedy transcripts, remove gaps in recordings without affecting meaning and provide cohesive output by splicing together clips from different sources",
     "url": "https://link.aitoolsdirectory.com/descript",
     "tags": [
-      "#podcasting #transcription",
-      "Audio"
+      "Audio",
+      "#podcasting #transcription"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1312,8 +1334,8 @@
     "description": "Get more done in Google Sheets and Excel with the help of Numerous.ai, an AI-powered plugin. Get an artificial intelligence playground directly in your spreadsheet to help simplify data management, generate content in bulk, and more.",
     "url": "https://link.aitoolsdirectory.com/numerous",
     "tags": [
-      "Productivity",
-      "#data analysis #automation"
+      "#data analysis #automation",
+      "Productivity"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1324,8 +1346,8 @@
     "url": "https://link.aitoolsdirectory.com/originalityai",
     "tags": [
       "AI Detection#writing",
-      "#writing",
-      "AI Detection"
+      "AI Detection",
+      "#writing"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1346,8 +1368,8 @@
     "description": "Visme AI integrates AI for seamless design, offering features like text writing, image editing, and text-to-speech conversion. It generates initial designs from prompts and helps create presentations, social media graphics, documents, and print materials quickly and efficiently.",
     "url": "https://link.aitoolsdirectory.com/visme-ai",
     "tags": [
-      "#DesignAutomation",
-      "Design Generators"
+      "Design Generators",
+      "#DesignAutomation"
     ],
     "pricing": "Freemium",
     "page": 2
@@ -1399,9 +1421,9 @@
     "description": "Crunch text with AI algorithms. Make smarter decisions based on the insights gleaned from data, whether you're doing qualitative research, academic research, marketing research, competitive analysis or digital marketing.",
     "url": "https://link.aitoolsdirectory.com/speakai",
     "tags": [
-      "#audio #analytics",
+      "Text-to-Voice#audio #analytics",
       "Text-to-Voice",
-      "Text-to-Voice#audio #analytics"
+      "#audio #analytics"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1422,8 +1444,8 @@
     "description": "Automate the removal of silences in videos and audio recordings. Automate the syncing of multi-track recordings. Speed up the content editing process.",
     "url": "https://link.aitoolsdirectory.com/recut",
     "tags": [
-      "#video editing #audio editing",
-      "Audio"
+      "Audio",
+      "#video editing #audio editing"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1443,8 +1465,8 @@
     "description": "Create and deploy beautiful websites with CodeDesign—a  website builder. Features include real-time collaboration, cloud hosting, supreme SEO capabilities, flexible publishing options, relational database, domain hosting or code export, AI design regeneration, and customization abilities.",
     "url": "https://link.aitoolsdirectory.com/codedesign",
     "tags": [
-      "#AI Coding #AI Website Builder",
-      "Automation"
+      "Automation",
+      "#AI Coding #AI Website Builder"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1474,8 +1496,8 @@
     "description": "Rask is an AI-powered platform that makes video localization easy. You can add voiceovers, subtitles, and dubbing in multiple languages with accurate translations, saving time and effort.",
     "url": "https://link.aitoolsdirectory.com/rask",
     "tags": [
-      "Video Editing",
-      "#localization #translation"
+      "#localization #translation",
+      "Video Editing"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1485,8 +1507,8 @@
     "description": "Dominate TikTok with data-driven analytics, growth marketing, and AI-powered content idea generation for businesses and creators.",
     "url": "https://link.aitoolsdirectory.com/exolyt",
     "tags": [
-      "Social Media",
-      "#TikTok #Content Creation"
+      "#TikTok #Content Creation",
+      "Social Media"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1506,9 +1528,9 @@
     "description": "Get your novel or screenplay written faster with a data-driven muse. Sudowrite specializes in immersive descriptions, scene expansion, draft completion, and simplifying sentence revisions. Features include voice-matching content generation, grammar check, interactive feedback, word discovery, and planning tools like Canvas.",
     "url": "https://link.aitoolsdirectory.com/sudowrite",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Freemium",
     "page": 2
@@ -1519,18 +1541,6 @@
     "url": "https://link.aitoolsdirectory.com/repliq",
     "tags": [
       "Marketing"
-    ],
-    "pricing": "Paid",
-    "page": 2
-  },
-  {
-    "name": "Aragon",
-    "description": "Aragon's AI Headshot Generator transforms your selfies into stunning and personalized headshots in just 90 minutes. Stand out with premium-quality photos, all without the need for a professional photoshoot.",
-    "url": "https://link.aitoolsdirectory.com/aragon",
-    "tags": [
-      "Social Media#avatar #headshots",
-      "Social Media",
-      "#avatar #headshots"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1563,8 +1573,8 @@
     "description": "AI-fueled teacher-designed platform improving education by automating resource generation, lesson planning, and assessment creation, while ensuring quality and relevance.",
     "url": "https://link.aitoolsdirectory.com/teachermatic",
     "tags": [
-      "#teaching #ai rubric maker",
-      "Education"
+      "Education",
+      "#teaching #ai rubric maker"
     ],
     "pricing": "Freemium",
     "page": 2
@@ -1574,8 +1584,8 @@
     "description": "A plagiarism checker with a specialized ChatGPT detection Chrome extension. Monitor thousands of web pages, identify copycats, and generate DMCA notices to remove infringing material instantly.",
     "url": "https://link.aitoolsdirectory.com/plagiashield",
     "tags": [
-      "#ChatGPT #Plagiarism",
-      "AI Detection"
+      "AI Detection",
+      "#ChatGPT #Plagiarism"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1605,20 +1615,10 @@
     "description": "A comprehensive detection tool for AI-generated, plagiarized or modified source codes, offering licensing alerts, proprietary code monitoring, and support for multiple languages. It provides integration with native LMS and has a powerful and customizable API.",
     "url": "https://link.aitoolsdirectory.com/codeleaks",
     "tags": [
-      "Coding",
-      "#code detection #plagiarism"
+      "#code detection #plagiarism",
+      "Coding"
     ],
     "pricing": "Paid",
-    "page": 2
-  },
-  {
-    "name": "Toasty AI",
-    "description": "ToastyAI is a marketing tool for podcasters that automates content creation, including video clips, transcripts, show notes, social media posts, and SEO-optimized blog articles.",
-    "url": "https://link.aitoolsdirectory.com/toastyai",
-    "tags": [
-      "Marketing"
-    ],
-    "pricing": "Freemium",
     "page": 2
   },
   {
@@ -1626,9 +1626,9 @@
     "description": "Generate plagiarism-free blog articles and original SEO content. Test instant copy variations to increase sales & social media engagement.",
     "url": "https://link.aitoolsdirectory.com/jasper",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1679,9 +1679,9 @@
     "description": "Creaitor is a smart AI assistant that can write content for you. It saves you time and gets rid of writer's block! You can use presets to get started or create your own, then let Creaitor do the rest.",
     "url": "https://link.aitoolsdirectory.com/creaitor",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1700,9 +1700,9 @@
     "description": "A powerful AI-powered writing tool for producing high-quality content, ParagraphAI offers you all the assistance you need and helps you write better content by making suggestions, editing and proofreading your work.",
     "url": "https://link.aitoolsdirectory.com/paragraph",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Freemium",
     "page": 2
@@ -1742,9 +1742,9 @@
     "description": "Profile Picture AI produces customized and visually appealing images for online identity based on inputs such as uploaded photographs and user preferences. This tool will help you look amazing on the internet",
     "url": "https://link.aitoolsdirectory.com/profilepicture",
     "tags": [
-      "Social Media#avatar #image",
+      "#avatar #image",
       "Social Media",
-      "#avatar #image"
+      "Social Media#avatar #image"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1795,8 +1795,8 @@
     "description": "DimeADozen AI provides instant business idea validation, leveraging GPT-4 for data analysis, offering market-specific reports and maintaining idea confidentiality. Trusted by over 75,000 businesses for better decision-making.",
     "url": "https://link.aitoolsdirectory.com/dimeadozen",
     "tags": [
-      "#market research #productivity",
-      "Business Intelligence"
+      "Business Intelligence",
+      "#market research #productivity"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1836,9 +1836,9 @@
     "description": "Katteb AI writer verifies information in advance of writing and is capable of covering current affairs. And with the chat feature, you can write content based on real-time data from the internet or YouTube videos. Use saved snippets or uploads to write about specific topics or content based on URLs.",
     "url": "https://link.aitoolsdirectory.com/katteb",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Paid",
     "page": 2
@@ -1848,8 +1848,8 @@
     "description": "Chat with any document and PDF using AI. From legal agreements to financial reports, PDF.ai brings your documents to life. You can ask questions, get summaries, find information, and more.",
     "url": "https://link.aitoolsdirectory.com/pdfai",
     "tags": [
-      "#PDF #chat #summarizer",
-      "Productivity"
+      "Productivity",
+      "#PDF #chat #summarizer"
     ],
     "pricing": "Free",
     "page": 2
@@ -1901,9 +1901,9 @@
     "description": "Supercharge meetings with AI notetaking, auto-transcription, platform integration, collaboration tools, real-time knowledge base, performance analytics, and voice-activated workflow automation. Record and transcribe meeting conversations to boost productivity",
     "url": "https://link.aitoolsdirectory.com/fireflies",
     "tags": [
-      "Productivity",
+      "Productivity#productivity",
       "#productivity",
-      "Productivity#productivity"
+      "Productivity"
     ],
     "pricing": "Freemium",
     "page": 2
@@ -1972,17 +1972,6 @@
     "page": 2
   },
   {
-    "name": "Formula Bot",
-    "description": "Upload, analyze and query your data with AI. Solve your Excel and Google Sheets problems in seconds with AI-generated formula generators. Type questions about your data to unlock insights and generate charts.",
-    "url": "https://link.aitoolsdirectory.com/formulabot",
-    "tags": [
-      "Productivity",
-      "#excel #google sheets"
-    ],
-    "pricing": "Paid",
-    "page": 2
-  },
-  {
     "name": "One Click Human",
     "description": "OneClickHuman transforms AI-generated text into natural, human-like content, optimized for SEO and free from errors, all with a single click.Use the code AITOOLS to get 60% off the paid version",
     "url": "https://oneclickhuman.com/?via=aitoolsdirectory-com",
@@ -1997,9 +1986,9 @@
     "description": "Generate SEO-optimized long-form content without the hefty price tag. Simply plug in, create limitless content, choose from affordable plans, and enjoy personalized support at your fingertips.",
     "url": "https://link.aitoolsdirectory.com/cuppa",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Paid",
     "page": 2
@@ -2010,8 +1999,8 @@
     "url": "https://link.aitoolsdirectory.com/coursebox",
     "tags": [
       "#edtech #courses #LMS",
-      "Education#edtech #courses #LMS",
-      "Education"
+      "Education",
+      "Education#edtech #courses #LMS"
     ],
     "pricing": "Freemium",
     "page": 2
@@ -2118,11 +2107,11 @@
     "description": "Introducing Audio Writer: a speech-to-text software that saves time in content creation. Refine transcripts, rewrite in different styles, choose presets, support for 15+ languages, and repurpose content in various formats.",
     "url": "https://audiowriter.app?via=aitoolsdirectory-com",
     "tags": [
-      "Productivity",
-      "#Speech to Text #AI Writer"
+      "#Speech to Text #AI Writer",
+      "Productivity"
     ],
     "pricing": "Paid",
-    "page": 3
+    "page": 2
   },
   {
     "name": "Softr AI",
@@ -2151,8 +2140,8 @@
     "url": "https://link.aitoolsdirectory.com/rankiq",
     "tags": [
       "#SEO",
-      "SEO",
-      "SEO#SEO"
+      "SEO#SEO",
+      "SEO"
     ],
     "pricing": "Paid",
     "page": 3
@@ -2162,9 +2151,9 @@
     "description": "Nara transforms customer support with AI. Instant responses, automated conversations, multi-channel support, and a user-friendly dashboard streamline engagement and boost satisfaction for your customers.",
     "url": "https://link.aitoolsdirectory.com/nara",
     "tags": [
-      "Chat#CRM #Customer Support",
+      "#CRM #Customer Support",
       "Chat",
-      "#CRM #Customer Support"
+      "Chat#CRM #Customer Support"
     ],
     "pricing": "Paid",
     "page": 3
@@ -2174,9 +2163,9 @@
     "description": "WordPress and Chrome AI Co-Pilot. Automate the process of generating content and integrate directly with WordPress or any other content management system.",
     "url": "https://link.aitoolsdirectory.com/bertha",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Freemium",
     "page": 3
@@ -2186,8 +2175,8 @@
     "description": "Eloise.Ai elevates your writing with top-quality content creation. Simplify tasks like word count and formatting tweaks, effortlessly refine sentences for engaging content, condense complex information, generate ideas, and craft concise, impactful written pieces.",
     "url": "https://link.aitoolsdirectory.com/eloise",
     "tags": [
-      "Productivity",
-      "#AI Writing #Writing Tool"
+      "#AI Writing #Writing Tool",
+      "Productivity"
     ],
     "pricing": "Paid",
     "page": 3
@@ -2208,8 +2197,8 @@
     "description": "Authenticate audio and protect yourself from fake voices using AI Voice Detector. Ensure the legitimacy of any audio contents and avoid misinformation.",
     "url": "https://aivoicedetector.com/?via=aitoolsdirectory-com",
     "tags": [
-      "#AI Detection #Voice Detector",
-      "AI Detection"
+      "AI Detection",
+      "#AI Detection #Voice Detector"
     ],
     "pricing": "Paid",
     "page": 3
@@ -2219,8 +2208,8 @@
     "description": "InterviewSpark's AI Interview Coach transforms practice sessions, providing instant feedback and measuring progress. Choose questions, record video, receive AI feedback, and track your improvement. Benefit as job seekers, students, or career changers.",
     "url": "https://interviewspark.io/?via=aitoolsdirectory-com",
     "tags": [
-      "Education",
-      "#AI Interview #Interview Coach"
+      "#AI Interview #Interview Coach",
+      "Education"
     ],
     "pricing": "Paid",
     "page": 3
@@ -2241,8 +2230,8 @@
     "description": "Introducing Aura AI: Unleash your creativity with an app that effortlessly transforms text prompts into stunning visual creations. Aura AI is the perfect tool for bringing your imagination to life with its adaptable modes and easy-to-use features.",
     "url": "https://auraai.app?via=aitoolsdirectory-com",
     "tags": [
-      "Generative Art",
-      "#Image Editing #Text to Image"
+      "#Image Editing #Text to Image",
+      "Generative Art"
     ],
     "pricing": "Freemium",
     "page": 3
@@ -2272,8 +2261,8 @@
     "description": "Wonderplan takes the hassle out of travel planning, offering personalized itineraries based on your interests, budget, and time constraints. It also helps you find the optimal route and takes care of all the boring details.",
     "url": "https://wonderplan.ai?via=aitoolsdirectory-com",
     "tags": [
-      "Productivity",
-      "#Travel Planner #AI Itinerary"
+      "#Travel Planner #AI Itinerary",
+      "Productivity"
     ],
     "pricing": "Free",
     "page": 3
@@ -2316,8 +2305,8 @@
     "url": "https://heyjuno.co/?via=aitoolsdirectory-com",
     "tags": [
       "Chat#AI Assistant #AI Research",
-      "Chat",
-      "#AI Assistant #AI Research"
+      "#AI Assistant #AI Research",
+      "Chat"
     ],
     "pricing": "Paid",
     "page": 3
@@ -2379,8 +2368,8 @@
     "description": "Build customized AI agents for tasks with your own data using MindPal. No coding required, web search integration, reliable sources, customizable instructions, contextual understanding, efficient chatbot assembly, and easy embedding options.",
     "url": "https://mindpal.space/?via=aitoolsdirectory-com",
     "tags": [
-      "#AI Agents #Chat Bots",
       "Chat#AI Agents #Chat Bots",
+      "#AI Agents #Chat Bots",
       "Chat"
     ],
     "pricing": "Paid",
@@ -2548,9 +2537,9 @@
     "description": "Record, craft, tweak, and control any voice audio professionally. Transform your voice or alter your accent with the finesse of a pro audio studio.",
     "url": "https://link.aitoolsdirectory.com/altered",
     "tags": [
-      "#voice editing",
+      "Audio",
       "Audio#voice editing",
-      "Audio"
+      "#voice editing"
     ],
     "pricing": "Paid",
     "page": 3
@@ -2571,8 +2560,8 @@
     "description": "TubeBuddy's Suggested Shorts tool is an AI sidekick that combs through your existing videos, cherry-picking the most engaging bits for you to repurpose into YouTube Shorts.",
     "url": "https://link.aitoolsdirectory.com/tubebuddy",
     "tags": [
-      "Video Generation",
-      "#YouTube #Video Editing"
+      "#YouTube #Video Editing",
+      "Video Generation"
     ],
     "pricing": "Freemium",
     "page": 3
@@ -2625,8 +2614,8 @@
     "description": "Voice-over production AI tool with over 500 versatile voice styles, over 140 languages, and compatibility with any video software. A cloud-based service offering quality audio that you can use in video and audio content to engage and convert audiences.",
     "url": "https://link.aitoolsdirectory.com/micmonster",
     "tags": [
-      "Text-to-Voice",
-      "#voiceover #text-to-voice"
+      "#voiceover #text-to-voice",
+      "Text-to-Voice"
     ],
     "pricing": "Paid",
     "page": 3
@@ -2656,9 +2645,9 @@
     "description": "MarketMuse is a content optimization tool with ChatGPT built in. Helps SEO professionals create well-crafted, SEO-focused articles. MarketMuse uses advanced AI algorithms to optimize content for SEO. By analyzing thousands of pages, it suggests semantically linked topics, relevant questions, and appropriate internal links.",
     "url": "https://link.aitoolsdirectory.com/marketmuse",
     "tags": [
+      "SEO#content marketing",
       "#content marketing",
-      "SEO",
-      "SEO#content marketing"
+      "SEO"
     ],
     "pricing": "Freemium",
     "page": 3
@@ -2678,8 +2667,8 @@
     "description": "SaneBox identifies important messages, but it also hides distractions, banishes annoying senders, and reminds you of emails that need a response. Make sure only important emails reach your inbox.",
     "url": "https://link.aitoolsdirectory.com/sanebox",
     "tags": [
-      "Productivity",
-      "#productivity #email"
+      "#productivity #email",
+      "Productivity"
     ],
     "pricing": "Paid",
     "page": 3
@@ -2700,9 +2689,9 @@
     "description": "Innovative tools to help users create engaging prompts for AI platforms like ChatGPT, making their interactions more effective, enjoyable, and geared towards productivity",
     "url": "https://link.aitoolsdirectory.com/promptpal",
     "tags": [
+      "#prompts",
       "Productivity#prompts",
-      "Productivity",
-      "#prompts"
+      "Productivity"
     ],
     "pricing": "Freemium",
     "page": 3
@@ -2712,8 +2701,8 @@
     "description": "Looka leverages AI to create unique, customizable logo designs that reflect your brand's individuality and can be vividly projected onto various merchandise. No specialist technical design skills required.",
     "url": "https://link.aitoolsdirectory.com/looka",
     "tags": [
-      "Graphic Design",
-      "#logo design #graphic design"
+      "#logo design #graphic design",
+      "Graphic Design"
     ],
     "pricing": "Paid",
     "page": 3
@@ -2756,8 +2745,8 @@
     "description": "AI-based voice generator, effortlessly converts text into speech, offering versatile and captivating voiceovers. Widely trusted, including by industry giants such as Boeing and Peloton, it facilitates multi-collaborator updates, mimics human speech nuances for natural sounding voiceovers.",
     "url": "https://link.aitoolsdirectory.com/wellsaid",
     "tags": [
-      "#Generative audio #voiceovers",
-      "Audio"
+      "Audio",
+      "#Generative audio #voiceovers"
     ],
     "pricing": "Paid",
     "page": 3
@@ -2799,8 +2788,8 @@
     "description": "Chaindesk offers a unique, no-code, AI chatbot solution customized to your specific data for improved business operations. Have intelligent interactions with your documents and offer multilingual support to customers.",
     "url": "https://link.aitoolsdirectory.com/chaindesk",
     "tags": [
-      "#websites #chatbot #nocode",
       "Chat#websites #chatbot #nocode",
+      "#websites #chatbot #nocode",
       "Chat"
     ],
     "pricing": "Freemium",
@@ -2811,9 +2800,9 @@
     "description": "Streamline your meetings and enhance collaboration with tl;dv's automated recording, transcription, and summarization features. Capture and document important points from every meeting.",
     "url": "https://link.aitoolsdirectory.com/tldv",
     "tags": [
-      "#summarizer",
       "Productivity",
-      "#meetings"
+      "#meetings",
+      "#summarizer"
     ],
     "pricing": "Freemium",
     "page": 3
@@ -2854,8 +2843,8 @@
     "url": "https://link.aitoolsdirectory.com/removebg",
     "tags": [
       "#background",
-      "Image Editing#background",
-      "Image Editing"
+      "Image Editing",
+      "Image Editing#background"
     ],
     "pricing": "Paid",
     "page": 3
@@ -2865,9 +2854,9 @@
     "description": "Pixlr is an advanced, web-based graphic design and photo editor with AI-powered features to help you create pro graphics and designs quickly. Remove backgrounds, adjust the look, remove blemishes, and turn your photos into painted ar",
     "url": "https://link.aitoolsdirectory.com/pixlr",
     "tags": [
-      "#art #graphics",
+      "Image Editing#art #graphics",
       "Image Editing",
-      "Image Editing#art #graphics"
+      "#art #graphics"
     ],
     "pricing": "Freemium",
     "page": 3
@@ -2887,9 +2876,9 @@
     "description": "Writesonic's new on-brand AI writer meticulously mirrors your brand's voice while delivering fact-checked, SEO-friendly content, all with a no-plagiarism guarantee. . The unlimited plan is 20% cheaper than ChatGPT and 50% cheaper than Jasper.",
     "url": "https://link.aitoolsdirectory.com/writesonic-aiwriter",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Paid",
     "page": 3
@@ -2944,8 +2933,8 @@
     "url": "https://chat.openai.com/?via=aitoolsdirectory-com",
     "tags": [
       "Chat",
-      "Chat#LLM #chatbot",
-      "#LLM #chatbot"
+      "#LLM #chatbot",
+      "Chat#LLM #chatbot"
     ],
     "pricing": "Freemium",
     "page": 3
@@ -2955,9 +2944,9 @@
     "description": "Rtyr is the perfect assistant for brainstorming and writing content. And Rytr also now includes an AI image generation tool to accompany your writing.",
     "url": "https://link.aitoolsdirectory.com/rytr",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Freemium",
     "page": 3
@@ -2967,9 +2956,9 @@
     "description": "Linguix is a productivity tool that helps you write better by automatically checking grammar, punctuation, and style using AI-based language NLP",
     "url": "https://link.aitoolsdirectory.com/linguix",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Paid",
     "page": 3
@@ -2989,8 +2978,8 @@
     "description": "Transform your text into natural-sounding speech. Create voiceovers for videos, podcasts, & e-learning and use the Text to Speech API to integrate voice synthesis into your applications.",
     "url": "https://link.aitoolsdirectory.com/playht",
     "tags": [
-      "#text to speech #tts",
-      "Text-to-Voice"
+      "Text-to-Voice",
+      "#text to speech #tts"
     ],
     "pricing": "Paid",
     "page": 3
@@ -3000,8 +2989,8 @@
     "description": "AI voiceover and text to speech platform gives you the ability to create realistic, human-like voices for your project with pronunciation editing, voice speed controls, and voice emotion manipulation.",
     "url": "https://link.aitoolsdirectory.com/lovo",
     "tags": [
-      "Text-to-Voice",
       "#voice",
+      "Text-to-Voice",
       "Text-to-Voice#voice"
     ],
     "pricing": "Freemium",
@@ -3022,9 +3011,9 @@
     "description": "Create elegant online forms with unparalleled speed, all while offering deep customization and seamless integration. From intuitive design tools to advanced form logic, Feathery AI is changing the form-building market.",
     "url": "https://link.aitoolsdirectory.com/feathery",
     "tags": [
-      "Productivity#forms #onboarding",
+      "#forms #onboarding",
       "Productivity",
-      "#forms #onboarding"
+      "Productivity#forms #onboarding"
     ],
     "pricing": "Freemium",
     "page": 3
@@ -3045,8 +3034,8 @@
     "description": "Send personalized emails that get replies with Luna, AI-powered email marketing software that suggests high-quality leads and automates the sending of personalized emails.",
     "url": "https://link.aitoolsdirectory.com/luna",
     "tags": [
-      "#email #productivity",
-      "Copywriting"
+      "Copywriting",
+      "#email #productivity"
     ],
     "pricing": "Paid",
     "page": 3
@@ -3118,9 +3107,9 @@
     "description": "Quillbot's natural language processing and machine learning tools suggest rephrasing and other improvements to text. Use it to brainstorm ideas, generate summaries, and even create unique articles and essays.",
     "url": "https://link.aitoolsdirectory.com/quillbot",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Freemium",
     "page": 3
@@ -3171,12 +3160,12 @@
     "description": "Create visual content that's straight-up stunning without breaking a sweat by entering prompts or simply uploading a photo and watch as the AI produces artwork based on the input.",
     "url": "https://link.aitoolsdirectory.com/artsmart",
     "tags": [
-      "Generative Art#art #graphics",
+      "Generative Art",
       "#art #graphics",
-      "Generative Art"
+      "Generative Art#art #graphics"
     ],
     "pricing": "Paid",
-    "page": 4
+    "page": 3
   },
   {
     "name": "Simple Phones",
@@ -3205,9 +3194,9 @@
     "description": "Mubert is a music app that makes it easy for content creators, artists, developers and brands to create the perfect soundtrack for their content.",
     "url": "https://link.aitoolsdirectory.com/mubert",
     "tags": [
+      "Music",
       "Music#audiocreation #music",
-      "#audiocreation #music",
-      "Music"
+      "#audiocreation #music"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3240,8 +3229,8 @@
     "url": "https://link.aitoolsdirectory.com/process-st",
     "tags": [
       "#Process Management",
-      "Productivity",
-      "#Workflows #automation"
+      "#Workflows #automation",
+      "Productivity"
     ],
     "pricing": "Freemium",
     "page": 4
@@ -3262,9 +3251,9 @@
     "description": "Hexometer's sophisticated AI platform monitors your website 24/7 to catch availability, performance, UX, SEO, and server health problems before they lead to a loss in traffic and lost revenue.",
     "url": "https://link.aitoolsdirectory.com/hexometer",
     "tags": [
+      "Automation",
       "Automation#monitoring",
-      "#monitoring",
-      "Automation"
+      "#monitoring"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3274,8 +3263,8 @@
     "description": "Stay up-to-date on important changes to your website or your competitor's websites. Create a business around monitoring and watching your competitor's next move.",
     "url": "https://link.aitoolsdirectory.com/hexowatch",
     "tags": [
-      "#competitor monitoring",
-      "Automation"
+      "Automation",
+      "#competitor monitoring"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3306,9 +3295,9 @@
     "description": "Referral Factory is an AI-powered tool that offers you a quick setup of custom or pre-built affiliate marketing programs. It integrates with major CRMs, provides easy referral tracking, and automates rewarding successful referrals.",
     "url": "https://link.aitoolsdirectory.com/referral-factory",
     "tags": [
-      "Marketing#referrals #growth",
       "#referrals #growth",
-      "Marketing"
+      "Marketing",
+      "Marketing#referrals #growth"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3328,8 +3317,8 @@
     "description": "A multilingual, affordable legal assistant providing instant help, document drafting, and contract review.",
     "url": "https://link.aitoolsdirectory.com/ailawyer",
     "tags": [
-      "#legal #assistant",
       "Productivity",
+      "#legal #assistant",
       "Productivity#legal #assistant"
     ],
     "pricing": "Paid",
@@ -3340,8 +3329,8 @@
     "description": "Fine-tune paraphrasing with your own voice while bypassing plagiarism & AI detection. Integrate cutting-edge technology for efficient, high-quality content generation. Upcoming features: plagiarism checker & multilingual support.",
     "url": "https://link.aitoolsdirectory.com/netus",
     "tags": [
-      "Copywriting",
-      "#aiparaphraser #aidetector"
+      "#aiparaphraser #aidetector",
+      "Copywriting"
     ],
     "pricing": "Freemium",
     "page": 4
@@ -3385,8 +3374,8 @@
     "description": "Chat effortlessly with your data using InsightBase, an AI tool that turns complex analytics into casual conversations. Uncover valuable insights",
     "url": "https://insightbase.ai/?via=aitoolsdirectory-com",
     "tags": [
-      "Business Intelligence",
-      "#sql #analytics #nocode"
+      "#sql #analytics #nocode",
+      "Business Intelligence"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3407,8 +3396,8 @@
     "description": "The AI-driven marketing & SEO tool you've been looking for. With 200+ methods for crafting titles/descriptions, backed by 16 years of marketing expertise, delivering undetectable human-like content that's authentic, credible, and saves time & effort.",
     "url": "https://link.aitoolsdirectory.com/seovendor",
     "tags": [
-      "#Content Generator #Writing",
       "SEO#Content Generator #Writing",
+      "#Content Generator #Writing",
       "SEO"
     ],
     "pricing": "Freemium",
@@ -3432,8 +3421,8 @@
     "url": "https://audo.ai/?via=aitoolsdirectory-com",
     "tags": [
       "Audio",
-      "#YouTube #podcasting",
-      "Audio#YouTube #podcasting"
+      "Audio#YouTube #podcasting",
+      "#YouTube #podcasting"
     ],
     "pricing": "Freemium",
     "page": 4
@@ -3443,9 +3432,9 @@
     "description": "Create personalized, up-to-date newsletters tailored to your audience's interests, all within minutes and without writing a word - saving you time, money and enhancing subscriber engagement.",
     "url": "https://link.aitoolsdirectory.com/neuralnewsletters",
     "tags": [
-      "#newsletters",
       "Marketing#newsletters",
-      "Marketing"
+      "Marketing",
+      "#newsletters"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3455,8 +3444,8 @@
     "description": "A bespoke set of unique prompts from MakerBox designed to fuel innovative marketing strategies, meticulously curated for solopreneurs and indie hackers seeking top-tier quality and personalized solutions.",
     "url": "https://link.aitoolsdirectory.com/makerbox-megaprompts",
     "tags": [
-      "Marketing",
       "#ChatGPT #prompts",
+      "Marketing",
       "Marketing#ChatGPT #prompts"
     ],
     "pricing": "Paid",
@@ -3467,8 +3456,8 @@
     "description": "With just a brief description of your idea, Mixo will generate your entire website content in seconds. Great for pre-launching products, gathering insights, building waiting lists, running beta testing programs or just validating new product ideas.",
     "url": "https://link.aitoolsdirectory.com/mixo",
     "tags": [
-      "#AI Builder #marketing",
-      "Copywriting"
+      "Copywriting",
+      "#AI Builder #marketing"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3491,8 +3480,8 @@
     "url": "https://github.com/features/copilot?via=aitoolsdirectory-com",
     "tags": [
       "Coding",
-      "#coding assistant #dev",
-      "Coding#coding assistant #dev"
+      "Coding#coding assistant #dev",
+      "#coding assistant #dev"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3502,8 +3491,8 @@
     "description": "Luma AI, created by Luma Labs, is an app and service that uses neural rendering technology to capture 3D images with only a few photos",
     "url": "https://lumalabs.ai/?via=aitoolsdirectory-com",
     "tags": [
-      "Generative Art",
-      "#3D #image generation"
+      "#3D #image generation",
+      "Generative Art"
     ],
     "pricing": "Free",
     "page": 4
@@ -3513,9 +3502,9 @@
     "description": "Generate artwork, social media posts, presentations, posters, videos, logos and more with intuitive design tools and a simple user interface",
     "url": "https://playgroundai.com?via=aitoolsdirectory-com",
     "tags": [
+      "#image #design",
       "Generative Art",
-      "Generative Art#image #design",
-      "#image #design"
+      "Generative Art#image #design"
     ],
     "pricing": "Free",
     "page": 4
@@ -3525,9 +3514,9 @@
     "description": "Caspar's Chrome extension helps you generate summaries, simplify complex topics, and make work more manageable. The Open AI processing provides article summaries instantly, streamlining professional workflows for personal and work use.",
     "url": "https://chrome.google.com/webstore/detail/casper-ai/fgfiokgecpkambjildjleljjcihnocel",
     "tags": [
-      "#summarizer",
+      "Copywriting",
       "Copywriting#summarizer",
-      "Copywriting"
+      "#summarizer"
     ],
     "pricing": "Free",
     "page": 4
@@ -3537,9 +3526,9 @@
     "description": "Genie is an AI-powered WordPress plugin that allows users to perform multiple tasks such as keyword analysis, SERP competitor analysis, blog post and sales copy writing, title variation generation, meta description creation, introductory paragraphs creation and social media copy writing. Genie also offers product description and paragraph rewriter features.",
     "url": "https://link.aitoolsdirectory.com/getgenie",
     "tags": [
-      "#WordPress #SEO",
       "Copywriting#WordPress #SEO",
-      "Copywriting"
+      "Copywriting",
+      "#WordPress #SEO"
     ],
     "pricing": "Freemium",
     "page": 4
@@ -3549,9 +3538,9 @@
     "description": "Just tell AI what to do and watch as it produces images in various styles, from classic art like Van Gogh to photorealistic graphics.",
     "url": "https://hotpot.ai/art-maker?via=aitoolsdirectory-com",
     "tags": [
+      "#art",
       "Generative Art",
-      "Generative Art#art",
-      "#art"
+      "Generative Art#art"
     ],
     "pricing": "Freemium",
     "page": 4
@@ -3561,9 +3550,9 @@
     "description": "A content writing powerhouse. Get automatic AI blog posts, blog topic ideas, intros, bullet point expansion, tone changer, paraphrasing tool or generate up to 250 words at a time with the click of a button! You can even write in any language with ContentBot's support of over 110 languages.",
     "url": "https://link.aitoolsdirectory.com/contentbot",
     "tags": [
-      "#summarizer",
+      "Copywriting",
       "Copywriting#summarizer",
-      "Copywriting"
+      "#summarizer"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3573,8 +3562,8 @@
     "description": "Google Workspace is a cloud-based productivity and collaboration suite with AI capabilities, such as Smart Compose, grammar suggestions, voice typing, portrait restore, Smart Reply, and live transcription in Google Meet.",
     "url": "https://link.aitoolsdirectory.com/google-workspace",
     "tags": [
-      "Productivity",
-      "#Google #communication"
+      "#Google #communication",
+      "Productivity"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3584,8 +3573,8 @@
     "description": "If you're looking for an AI model that can draw images from any text prompt, Craiyon is a great option. The model is trained using Google TRC and is capable of generating impressive images.",
     "url": "https://www.craiyon.com/?via=aitoolsdirectory-com",
     "tags": [
-      "Generative Art",
       "Generative Art#text to image",
+      "Generative Art",
       "#text to image"
     ],
     "pricing": "Free",
@@ -3618,8 +3607,8 @@
     "description": "Enjoy a room that looks like it was designed by a professional without having to break the bank. get hundreds of interior design ideas for every room in your home. Completely free and with no limit",
     "url": "https://airoomplanner.com/?via=aitoolsdirectory-com",
     "tags": [
-      "Generative Art",
       "Generative Art#architecture",
+      "Generative Art",
       "#architecture"
     ],
     "pricing": "Free",
@@ -3630,9 +3619,9 @@
     "description": "Midjourney's AI is trained on a dataset of works from artists such as Vincent van Gogh and Pablo Picasso. These inputs are applied to new images based on your prompts. Get original, unique, and beautiful artwork in seconds.",
     "url": "https://www.midjourney.com/?via=aitoolsdirectory-com",
     "tags": [
-      "Generative Art#art #graphics",
+      "Generative Art",
       "#art #graphics",
-      "Generative Art"
+      "Generative Art#art #graphics"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3642,9 +3631,9 @@
     "description": "AISEO offers paraphrasing and readability improver tools as well as NLP that works with the SEO-focused content generator. Write short or long form. There's a Chrome extension to help you write faster in any app.",
     "url": "https://link.aitoolsdirectory.com/aiseo-art",
     "tags": [
-      "#writing #assistant",
       "Copywriting",
-      "Copywriting#writing #assistant"
+      "Copywriting#writing #assistant",
+      "#writing #assistant"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3654,9 +3643,9 @@
     "description": "AI image Stable Diffusion search engine",
     "url": "https://lexica.art/?via=aitoolsdirectory-com",
     "tags": [
+      "#art",
       "Generative Art",
-      "Generative Art#art",
-      "#art"
+      "Generative Art#art"
     ],
     "pricing": "Free",
     "page": 4
@@ -3666,9 +3655,9 @@
     "description": "Build AI models without code—and then use them through integrations, API, or public share links. Create high-quality content for your website or blog",
     "url": "https://link.aitoolsdirectory.com/riku",
     "tags": [
-      "Copywriting#writing",
       "Copywriting",
-      "#writing"
+      "#writing",
+      "Copywriting#writing"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3678,8 +3667,8 @@
     "description": "Todoist's new AI-assistant integration can help you attain your goals by generating a list of tasks, making them more actionable, breaking them down into more manageable steps, and providing tips on how to achieve them.",
     "url": "https://link.aitoolsdirectory.com/todoist",
     "tags": [
-      "Productivity",
-      "#task manager #todo list"
+      "#task manager #todo list",
+      "Productivity"
     ],
     "pricing": "Freemium",
     "page": 4
@@ -3689,9 +3678,9 @@
     "description": "Get unique and interesting conversation starters and vocabulary building tools, as well as grammar, reading comprehension, AI language chatbot, and pronunciation lessons to help you learn a language faster.",
     "url": "https://link.aitoolsdirectory.com/soofy",
     "tags": [
-      "Education#languages #education",
       "#languages #education",
-      "Education"
+      "Education",
+      "Education#languages #education"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3754,8 +3743,8 @@
     "description": "NovelAI uses Artificial Intelligence to help writers and storytellers pen their finest works. Using a proprietary Natural Language Processing (NLP) platform, authors can now access a GPT-powered sandbox and let their imagination run wild.",
     "url": "https://novelai.net/?via=aitoolsdirectory-com",
     "tags": [
-      "#writing #assistant",
-      "Generative Text"
+      "Generative Text",
+      "#writing #assistant"
     ],
     "pricing": "Freemium",
     "page": 4
@@ -3765,9 +3754,9 @@
     "description": "Leadpages' AI Engine is a new product that allows for automated copywriting, saving users time and effort in creating effective, high-quality copy.",
     "url": "https://link.aitoolsdirectory.com/leadpages-ai",
     "tags": [
+      "Copywriting#landing pages",
       "Copywriting",
-      "#landing pages",
-      "Copywriting#landing pages"
+      "#landing pages"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3797,9 +3786,9 @@
     "description": "Artflow.ai is an AI-powered app that allows users to effortlessly turn their creative ideas into animated stories. The app uses AI and machine learning algorithms to generate portraits based on short, textual input from the user, making it easy to create visuals with just a creative idea.",
     "url": "https://artflow.ai/?via=aitoolsdirectory-com",
     "tags": [
-      "Generative Art",
+      "#graphic design",
       "Generative Art#graphic design",
-      "#graphic design"
+      "Generative Art"
     ],
     "pricing": "Freemium",
     "page": 4
@@ -3809,9 +3798,9 @@
     "description": "A type of chatbot that neural language models to create the illusion of an intelligent conversation partner. You write the first part of a conversation, and the computer writes the next part.",
     "url": "https://beta.character.ai/?via=aitoolsdirectory-com",
     "tags": [
+      "Chat#avatar",
       "#avatar",
-      "Chat",
-      "Chat#avatar"
+      "Chat"
     ],
     "pricing": "Free",
     "page": 4
@@ -3821,8 +3810,8 @@
     "description": "Harness the power of Al to create an online presence for your solo business. Generate a website, automate marketing, and manage finances.",
     "url": "https://durable.co/ai-website-builder/?via=aitoolsdirectory-com",
     "tags": [
-      "Marketing#nocode",
       "#nocode",
+      "Marketing#nocode",
       "Marketing"
     ],
     "pricing": "Freemium",
@@ -3834,8 +3823,8 @@
     "url": "https://www.poised.com/?via=aitoolsdirectory-com",
     "tags": [
       "#presentations",
-      "Productivity#presentations",
-      "Productivity"
+      "Productivity",
+      "Productivity#presentations"
     ],
     "pricing": "Freemium",
     "page": 4
@@ -3845,8 +3834,8 @@
     "description": "Make your audio recordings sound more professional and polished with Cleanvoice's advanced algorithm to detect and eliminate unnecessary filler sounds.",
     "url": "https://cleanvoice.ai/?via=aitoolsdirectory-com",
     "tags": [
-      "#podcast",
       "Podcasting#podcast",
+      "#podcast",
       "Podcasting"
     ],
     "pricing": "Paid",
@@ -3857,9 +3846,9 @@
     "description": "Social web highlighter. Stay up to date on the web and teach your AI models how to learn from what you like.",
     "url": "https://glasp.co/ai-writing?via=aitoolsdirectory-com",
     "tags": [
-      "Social Media",
+      "#marketing",
       "Social Media#marketing",
-      "#marketing"
+      "Social Media"
     ],
     "pricing": "Freemium",
     "page": 4
@@ -3869,9 +3858,9 @@
     "description": "Letterdrop is a platform that automates your content workflow across SEO, social media and email to help you create more of the right content—and close more deals.",
     "url": "https://letterdrop.com/?via=aitoolsdirectory-com",
     "tags": [
-      "#writing #automation",
       "Marketing#writing #automation",
-      "Marketing"
+      "Marketing",
+      "#writing #automation"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3881,9 +3870,9 @@
     "description": "One of the fastest AI image generators. Tweak and modify any image, generate any kind of photo or picture. Create eye-catching visuals with ease.",
     "url": "https://link.aitoolsdirectory.com/aiseo-art",
     "tags": [
-      "Generative Art#art #graphics",
+      "Generative Art",
       "#art #graphics",
-      "Generative Art"
+      "Generative Art#art #graphics"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3894,8 +3883,8 @@
     "url": "https://www.motiva.ai/?via=aitoolsdirectory-com",
     "tags": [
       "Copywriting#assistant",
-      "Copywriting",
-      "#assistant"
+      "#assistant",
+      "Copywriting"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3905,9 +3894,9 @@
     "description": "Fylm.ai is an online service that provides photographers with a colour grading tool powered by artificial intelligence. The tool allows users to correct their photos with ease and precision, producing Hollywood-quality results.",
     "url": "https://link.aitoolsdirectory.com/fylm",
     "tags": [
-      "#graphics",
       "Image Editing",
-      "Image Editing#graphics"
+      "Image Editing#graphics",
+      "#graphics"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3917,8 +3906,8 @@
     "description": "Automate the process of manually processing documents by automatically extracting invoice data quickly and accurately with the help of AI. Free up time and resources you need to focus on your business and stay ahead of the competition.",
     "url": "https://procys.com/?via=aitoolsdirectory-com",
     "tags": [
-      "#business administration",
-      "Automation"
+      "Automation",
+      "#business administration"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3952,9 +3941,9 @@
     "description": "Ready-made content prompts for ecommerce marketers to help you set up your store and marketing campaigns in less than an hour",
     "url": "https://www.ecommerceprompts.com/?via=aitoolsdirectory-com",
     "tags": [
+      "Copywriting",
       "Copywriting#ecommerce",
-      "#ecommerce",
-      "Copywriting"
+      "#ecommerce"
     ],
     "pricing": "Paid",
     "page": 4
@@ -3976,9 +3965,9 @@
     "description": "Translate instantly from one language to another with DeepL. Translate documents, webpages and apps in seconds",
     "url": "https://www.deepl.com/translator",
     "tags": [
-      "Translation",
+      "Translation#language",
       "#language",
-      "Translation#language"
+      "Translation"
     ],
     "pricing": "Freemium",
     "page": 4
@@ -4012,8 +4001,8 @@
     "url": "https://www.visily.ai/?via=aitoolsdirectory-com",
     "tags": [
       "#design",
-      "Image Editing#design",
-      "Image Editing"
+      "Image Editing",
+      "Image Editing#design"
     ],
     "pricing": "Free",
     "page": 4
@@ -4047,8 +4036,8 @@
     "url": "https://hello.fathom.fm/?via=aitoolsdirectory-com",
     "tags": [
       "#podcast #consumer",
-      "Podcasting#podcast #consumer",
-      "Podcasting"
+      "Podcasting",
+      "Podcasting#podcast #consumer"
     ],
     "pricing": "Free",
     "page": 4
@@ -4092,8 +4081,8 @@
     "description": "AIPRM comes with curated prompts to help SEO professionals optimize their websites and boost rankings on search engines.",
     "url": "https://www.aiprm.com/?via=aitoolsdirectory-com",
     "tags": [
-      "#chatGPT #SEO",
       "SEO#chatGPT #SEO",
+      "#chatGPT #SEO",
       "SEO"
     ],
     "pricing": "Free",
@@ -4104,8 +4093,8 @@
     "description": "Gen-1 is a new video generation technique that uses composition and style to create compelling footage out of existing videos. Generate new videos that mimic the structure of your original video",
     "url": "https://research.runwayml.com/gen1?via=aitoolsdirectory-com",
     "tags": [
-      "#video #YouTube",
-      "Generative Video"
+      "Generative Video",
+      "#video #YouTube"
     ],
     "pricing": "Freemium",
     "page": 4
@@ -4115,9 +4104,9 @@
     "description": "Track, debug, and replay old completions of the ever-important AI prompts (maintain a log of their prompts and OpenAI API requests - prompt engineering is the future so this will be a huge timesaver)",
     "url": "https://promptlayer.com/?via=aitoolsdirectory-com",
     "tags": [
-      "Copywriting",
+      "#prompts #ChatGPT",
       "Copywriting#prompts #ChatGPT",
-      "#prompts #ChatGPT"
+      "Copywriting"
     ],
     "pricing": "Free",
     "page": 4

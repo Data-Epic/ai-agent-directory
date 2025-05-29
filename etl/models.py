@@ -5,18 +5,16 @@ Name: Arowosegbe Victor Iyanuoluwa\n
 Email: Iyanuvicky@gmail.com\n
 GitHub: https://github.com/Iyanuvicky22/projects
 """
-
 import os
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, Column, String, Text, Boolean, DateTime, func, Integer
 from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy.exc import SQLAlchemyError
-from logger_config import logger
+from utils.logger_config import logger
 import pandas as pd
 
 load_dotenv(dotenv_path=".env")
 
-# DB Setup
 DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_HOST = os.getenv("DB_HOST")
@@ -24,8 +22,6 @@ DB_PORT = os.getenv("DB_PORT")
 DB_NAME = os.getenv("DB_NAME")
 
 DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-
-# DB_URL = f"postgresql://{"postgres"}:{"apotiks"}@{"localhost"}:{"5432"}/{"db"}"
 
 Base = declarative_base()
 
@@ -36,18 +32,23 @@ def connect_db():
     """
     try:
         engine = create_engine(DB_URL)
-        Session = sessionmaker(bind=engine, autoflush=True)
+        Session = sessionmaker(bind=engine, autoflush=False)
         Base.metadata.create_all(engine)
         logger.info("Database succesfully connected to.")
-        return Session, engine
     except SQLAlchemyError as e:
         logger.error("Databse connection error: %s", e, exc_info=True)
+    return Session, engine
 
 
 class Agent(Base):
+    """
+    Agents table model creation
+    Args:
+        Base (): SQLAlchemy Base model
+    """
     __tablename__ = "agents"
 
-    id = Column(Integer, primary_key=True, autoincrement=False)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False, index=True)
     description = Column(Text)
     homepage_url = Column(String)
@@ -59,12 +60,19 @@ class Agent(Base):
 
 
 def load_data(df: pd.DataFrame):
+    """
+    Function to load data into the Database (PostgreSQL).
+    Args:
+        df (pd.DataFrame): Cleaned and Transformed data to be loaded.
+    """
     Session, engine = connect_db()
     data = df
 
     with Session.begin() as session:
         for _, row in data.iterrows():
-            ai_tool = session.query(Agent).filter_by(name=str(row["name"])).first()
+            ai_tool = session.query(Agent).filter_by(
+                name=str(row["name"])
+                ).first()
 
             if not ai_tool:
                 agent = Agent(
