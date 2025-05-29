@@ -1,21 +1,27 @@
 from fastapi import APIRouter, Depends, HTTPException
+from database import get_db
 
 
 router = APIRouter()
 
 
 @router.get("/agent")
-def list_agents(category: str = None, trending: bool = False or True):
+def list_agents(category: str = None, trending: bool = False or True, db: Depends = get_db):
     """
     List all agents.
     """
-    # * Sample data for agents
-    return {
-        "agents": [
-            {"id":1, "name":"Agent 1", "category":category, "trending":trending},
-            {"id":2, "name":"Agent 2", "category":category, "trending":trending},
-            {"id":3, "name":"Agent 3", "category":category, "trending":trending}
-            ]}
+    query = db.query(Agent)
+    if category:
+        query = query.filter(Agent.category == category)
+    if trending is not None:
+        query = query.filter(Agent.trending == trending)
+    
+    results = query.all()
+    if not results:
+        raise HTTPException(status_code=404, detail="No agents found")
+    return results
+    
+
 
 @router.get("/agent/{agent_id}")
 def get_agent(agent_id: int):
@@ -34,10 +40,3 @@ def get_agent(agent_id: int):
         raise HTTPException(status_code=404, detail="Agent not found")
     
     return agent
-
-@router.post("/agent/{agent_id}/review")
-def review_agent(agent_id: int, review: str):
-    if not review:
-        raise HTTPException(status_code=400, detail="Review cannot be empty")
-    
-    return {"message": "Review submitted successfully", "agent_id": agent_id, "review": review}
