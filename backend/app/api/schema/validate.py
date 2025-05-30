@@ -9,7 +9,7 @@ class SignupRequest(BaseModel):
     username: str
     password: str=Field(min_length=4, max_length=8)
     email: str
-class agent_idRequest(BaseModel):
+class agentRequest(BaseModel):
     id: int
     name: str
     category: Optional[str] = None
