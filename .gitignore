@@ -6,6 +6,7 @@ venv/
 
 # Poetry cache
 .cache/pypoetry/
+*poetry.lock
 
 # Python bytecode files
 __pycache__/
@@ -31,6 +32,10 @@ build/
 
 # Operating system specific files (e.g., macOS, Windows)
 .DS_Store
+<<<<<<< HEAD
 Thumbs.db
 etl/ai_tools_scraped.csv
 etl/scraper.ipynb
+=======
+Thumbs.db
+>>>>>>> 28de4c0e4dd5a89d11d206f23973d92ef359e650
