@@ -5,17 +5,47 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from bs4 import BeautifulSoup
+from datetime import datetime
+
 import json
 import time
 import random
 import logging
 
+CURRENT_TIME = datetime.now().strftime("%d-%m-%Y")
+
 # Setup logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
 
 
 class AIToolsScraper:
+    """
+    AI Tools Scraper Class
+
+    Functions:
+        setup_driver:
+        wait_for_content_load:
+        wait_for_elements:
+        wait_for_main_list:
+        wait_for_network_idle:
+        wait_for_page_ready:
+        scroll_to_load_content:
+        extract_tools_from_page:
+        debug_main_list_structure:
+        save_page_html:
+        extract_tool_data:
+        fallback_extraction:
+        scrape_page:
+        scrape_multiple_pages:
+        remove_duplicates:
+        save_tools:
+        print_tools:
+        close:
+    """
+
     def __init__(self, headless=True, wait_time=10):
         self.wait_time = wait_time
         self.setup_driver(headless)
@@ -25,25 +55,28 @@ class AIToolsScraper:
         chrome_options = Options()
 
         if headless:
-            chrome_options.add_argument('--headless')
+            chrome_options.add_argument("--headless")
 
         # Anti-detection measures
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--disable-blink-features=AutomationControlled")
         chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-        chrome_options.add_experimental_option('useAutomationExtension', False)
+        chrome_options.add_experimental_option("useAutomationExtension", False)
 
         # Realistic browser settings
         chrome_options.add_argument(
-            '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
-        chrome_options.add_argument('--window-size=1920,1080')
-        chrome_options.add_argument('--disable-web-security')
-        chrome_options.add_argument('--allow-running-insecure-content')
+            "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        )
+        chrome_options.add_argument("--window-size=1920,1080")
+        chrome_options.add_argument("--disable-web-security")
+        chrome_options.add_argument("--allow-running-insecure-content")
 
         try:
             self.driver = webdriver.Chrome(options=chrome_options)
-            self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+            self.driver.execute_script(
+                "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
+            )
             self.wait = WebDriverWait(self.driver, self.wait_time)
             logger.info("WebDriver initialized successfully")
         except Exception as e:
@@ -60,13 +93,19 @@ class AIToolsScraper:
         # Fallback strategies if main list selector fails
         strategies = [
             # Strategy 1: Wait for general selectors that might contain tools
-            lambda: self.wait_for_elements([
-                '.sv-tiles-list', '.tool-card', '.ai-tool', '.tool-item', '.card',
-                '[class*="tool"]', '[class*="card"]', '.grid > div'
-            ]),
-
+            lambda: self.wait_for_elements(
+                [
+                    ".sv-tiles-list",
+                    ".tool-card",
+                    ".ai-tool",
+                    ".tool-item",
+                    ".card",
+                    '[class*="tool"]',
+                    '[class*="card"]',
+                    ".grid > div",
+                ]
+            ),
             lambda: self.wait_for_network_idle(),
-
             lambda: self.wait_for_page_ready(),
         ]
 
@@ -120,7 +159,8 @@ class AIToolsScraper:
 
     def wait_for_network_idle(self, timeout=20):
         try:
-            self.driver.execute_async_script("""
+            self.driver.execute_async_script(
+                """
                 var callback = arguments[arguments.length - 1];
                 var timeout = setTimeout(function() {
                     callback(true);
@@ -141,7 +181,9 @@ class AIToolsScraper:
                         }
                     });
                 };
-            """, timeout)
+            """,
+                timeout,
+            )
             return True
         except:
             return False
@@ -150,17 +192,26 @@ class AIToolsScraper:
         """Wait for page ready state and no loading indicators"""
         try:
             # Wait for document ready
-            self.wait.until(lambda driver: driver.execute_script("return document.readyState") == "complete")
+            self.wait.until(
+                lambda driver: driver.execute_script("return document.readyState")
+                == "complete"
+            )
 
             # Wait for common loading indicators to disappear
             loading_selectors = [
-                '.loading', '.spinner', '.loader', '[class*="loading"]',
-                '[class*="spinner"]', '[class*="loader"]'
+                ".loading",
+                ".spinner",
+                ".loader",
+                '[class*="loading"]',
+                '[class*="spinner"]',
+                '[class*="loader"]',
             ]
 
             for selector in loading_selectors:
                 try:
-                    self.wait.until(EC.invisibility_of_element_located((By.CSS_SELECTOR, selector)))
+                    self.wait.until(
+                        EC.invisibility_of_element_located((By.CSS_SELECTOR, selector))
+                    )
                 except TimeoutException:
                     pass  # Loading indicator might not exist
 
@@ -178,7 +229,9 @@ class AIToolsScraper:
         max_attempts = 5
 
         while scroll_attempts < max_attempts:
-            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            self.driver.execute_script(
+                "window.scrollTo(0, document.body.scrollHeight);"
+            )
             time.sleep(2)
 
             new_height = self.driver.execute_script("return document.body.scrollHeight")
@@ -199,7 +252,7 @@ class AIToolsScraper:
 
         # Get page source after JavaScript execution
         html = self.driver.page_source
-        soup = BeautifulSoup(html, 'html.parser')
+        soup = BeautifulSoup(html, "html.parser")
 
         # First, try to find the main tools list container
         main_list_selector = "div.sv-tiles-list.sv-tiles-list--flex.sv-tiles-list--tile-view.sv-tiles-list--small-size"
@@ -211,16 +264,20 @@ class AIToolsScraper:
             logger.info("Found main tools list container")
 
             tool_elements = main_list.find_all(recursive=False)
-            logger.info(f"Found {len(tool_elements)} direct child elements in main list")
+            logger.info(
+                f"Found {len(tool_elements)} direct child elements in main list"
+            )
 
             if not tool_elements:
-                tool_elements = main_list.find_all(['div', 'article', 'section'])
-                logger.info(f"Found {len(tool_elements)} descendant elements in main list")
+                tool_elements = main_list.find_all(["div", "article", "section"])
+                logger.info(
+                    f"Found {len(tool_elements)} descendant elements in main list"
+                )
 
             # Extract data from each tool element
             for element in tool_elements:
                 tool_data = self.extract_tool_data(element)
-                if tool_data and tool_data.get('name'):
+                if tool_data and tool_data.get("name"):
                     tools_found.append(tool_data)
 
         # Fallback: try other common selectors if main list approach didn't work
@@ -228,21 +285,35 @@ class AIToolsScraper:
             logger.info("Main list approach failed, trying fallback selectors...")
 
             selectors_to_try = [
-                '.sv-tiles-list div', '.sv-tiles-list > div', '.sv-tiles-list article',
-                '.tool-card', '.ai-tool', '.tool-item', '.directory-item',
-                '.card', '.item', '.product-card', '.listing-item',
-                '[class*="tool"]', '[class*="card"]', '[class*="item"]',
-                '.grid > div', '.list > div', '.container > div'
+                ".sv-tiles-list div",
+                ".sv-tiles-list > div",
+                ".sv-tiles-list article",
+                ".tool-card",
+                ".ai-tool",
+                ".tool-item",
+                ".directory-item",
+                ".card",
+                ".item",
+                ".product-card",
+                ".listing-item",
+                '[class*="tool"]',
+                '[class*="card"]',
+                '[class*="item"]',
+                ".grid > div",
+                ".list > div",
+                ".container > div",
             ]
 
             for selector in selectors_to_try:
                 elements = soup.select(selector)
                 if elements and len(elements) > 2:
-                    logger.info(f"Using fallback selector '{selector}' - found {len(elements)} elements")
+                    logger.info(
+                        f"Using fallback selector '{selector}' - found {len(elements)} elements"
+                    )
 
                     for element in elements:
                         tool_data = self.extract_tool_data(element)
-                        if tool_data and tool_data.get('name'):
+                        if tool_data and tool_data.get("name"):
                             tools_found.append(tool_data)
 
                     if tools_found:
@@ -259,7 +330,7 @@ class AIToolsScraper:
         logger.info("Debugging main list structure...")
 
         html = self.driver.page_source
-        soup = BeautifulSoup(html, 'html.parser')
+        soup = BeautifulSoup(html, "html.parser")
 
         main_list_selector = "div.sv-tiles-list.sv-tiles-list--flex.sv-tiles-list--tile-view.sv-tiles-list--small-size"
         main_list = soup.select_one(main_list_selector)
@@ -278,26 +349,34 @@ class AIToolsScraper:
                 print(f"  Classes: {child.get('class', [])}")
                 print(f"  Text preview: {child.get_text(strip=True)[:100]}...")
 
-                links = child.find_all('a')
+                links = child.find_all("a")
                 if links:
                     print(f"  Links found: {len(links)}")
                     for link in links[:2]:  # Show first 2 links
-                        print(f"    - {link.get('href', 'No href')} | Text: {link.get_text(strip=True)[:50]}")
+                        print(
+                            f"    - {link.get('href', 'No href')} | Text: {link.get_text(strip=True)[:50]}"
+                        )
 
             print(f"\nHTML Structure Preview:")
-            print(str(main_list)[:500] + "..." if len(str(main_list)) > 500 else str(main_list))
+            print(
+                str(main_list)[:500] + "..."
+                if len(str(main_list)) > 500
+                else str(main_list)
+            )
 
         else:
             print("Main list container not found!")
 
             similar_containers = soup.select("div[class*='sv-tiles-list']")
-            print(f"Found {len(similar_containers)} elements with 'sv-tiles-list' in class")
+            print(
+                f"Found {len(similar_containers)} elements with 'sv-tiles-list' in class"
+            )
 
             for container in similar_containers:
                 print(f"Classes: {container.get('class', [])}")
 
     def save_page_html(self, filename="debug_page.html"):
-        with open(filename, 'w', encoding='utf-8') as f:
+        with open(filename, "w", encoding="utf-8") as f:
             f.write(self.driver.page_source)
         logger.info(f"Page HTML saved to {filename}")
 
@@ -305,12 +384,24 @@ class AIToolsScraper:
         tool_data = {}
 
         title_selectors = [
-            'h1', 'h2', 'h3', 'h4', 'h5', 'h6', '[class*="sv-tile__title sv-text-reset sv-is-link"]'  # Standard headings
-            '.title', '.name', '.tool-name', '.product-name',  # Common title classes
-            '[class*="title"]', '[class*="name"]',  # Partial class matches
-            'a[href]',  # Links often contain tool names
-            'strong', 'b',  # Bold text
-            '.sv-tile-title', '.sv-title'  # SV-specific classes
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            '[class*="sv-tile__title sv-text-reset sv-is-link"]'  # Standard headings
+            ".title",
+            ".name",
+            ".tool-name",
+            ".product-name",  # Common title classes
+            '[class*="title"]',
+            '[class*="name"]',  # Partial class matches
+            "a[href]",  # Links often contain tool names
+            "strong",
+            "b",  # Bold text
+            ".sv-tile-title",
+            ".sv-title",  # SV-specific classes
         ]
 
         for selector in title_selectors:
@@ -319,15 +410,20 @@ class AIToolsScraper:
                 title_text = title_elem.get_text(strip=True)
                 # Skip very short or very long titles
                 if 3 <= len(title_text) <= 100:
-                    tool_data['name'] = title_text
+                    tool_data["name"] = title_text
                     break
 
         desc_selectors = [
-            '.description', '.desc', '.summary', '.overview',
-            '[class*="desc"]', '[class*="summary"]',
-            'p',  # Paragraphs
-            'sv-tile__description sv-text-reset',
-            '.sv-tile-description', '.sv-description'  # SV-specific
+            ".description",
+            ".desc",
+            ".summary",
+            ".overview",
+            '[class*="desc"]',
+            '[class*="summary"]',
+            "p",  # Paragraphs
+            "sv-tile__description sv-text-reset",
+            ".sv-tile-description",
+            ".sv-description",  # SV-specific
         ]
 
         for selector in desc_selectors:
@@ -335,36 +431,43 @@ class AIToolsScraper:
             if desc_elem and desc_elem.get_text(strip=True):
                 desc_text = desc_elem.get_text(strip=True)
                 # Look for meaningful descriptions (not too short, not the same as title)
-                if len(desc_text) > 20 and desc_text != tool_data.get('name', ''):
-                    tool_data['description'] = desc_text
+                if len(desc_text) > 20 and desc_text != tool_data.get("name", ""):
+                    tool_data["description"] = desc_text
                     break
 
-        if not tool_data.get('description'):
+        if not tool_data.get("description"):
             all_text_elements = element.find_all(string=True)
             text_contents = [text.strip() for text in all_text_elements if text.strip()]
             if text_contents:
                 # Find the longest text that's not the title
                 longest_text = max(text_contents, key=len, default="")
-                if len(longest_text) > 20 and longest_text != tool_data.get('name', ''):
-                    tool_data['description'] = longest_text
+                if len(longest_text) > 20 and longest_text != tool_data.get("name", ""):
+                    tool_data["description"] = longest_text
 
-        link_elements = element.select('a[href]')
+        link_elements = element.select("a[href]")
         for link_elem in link_elements:
-            href = link_elem.get('href', '')
-            if href and not href.startswith('#'):
-                if href.startswith('http'):
-                    tool_data['url'] = href
+            href = link_elem.get("href", "")
+            if href and not href.startswith("#"):
+                if href.startswith("http"):
+                    tool_data["url"] = href
                     break
-                elif href.startswith('/') and 'aitoolsdirectory.com' not in href:
+                elif href.startswith("/") and "aitoolsdirectory.com" not in href:
                     # Skip internal directory links, look for external ones
                     continue
-                elif href.startswith('/'):
-                    tool_data['url'] = f"https://aitoolsdirectory.com{href}"
+                elif href.startswith("/"):
+                    tool_data["url"] = f"https://aitoolsdirectory.com{href}"
 
         tag_selectors = [
-            '.tag', '.category', '.badge', '.label', '.chip',
-            '[class*="tag"]', '[class*="category"]', '[class*="badge"]',
-            '.sv-tag', '.sv-category'  # SV-specific
+            ".tag",
+            ".category",
+            ".badge",
+            ".label",
+            ".chip",
+            '[class*="tag"]',
+            '[class*="category"]',
+            '[class*="badge"]',
+            ".sv-tag",
+            ".sv-category",  # SV-specific
         ]
 
         tags = []
@@ -376,12 +479,18 @@ class AIToolsScraper:
                     tags.append(tag_text)
 
         if tags:
-            tool_data['tags'] = list(set(tags))  # Remove duplicates
+            tool_data["tags"] = list(set(tags))  # Remove duplicates
 
         price_selectors = [
-            '.price', '.pricing', '.cost', '.plan',
-            '[class*="price"]', '[class*="cost"]', '[class*="plan"]',
-            '.sv-price', '.sv-pricing'
+            ".price",
+            ".pricing",
+            ".cost",
+            ".plan",
+            '[class*="price"]',
+            '[class*="cost"]',
+            '[class*="plan"]',
+            ".sv-price",
+            ".sv-pricing",
         ]
 
         for selector in price_selectors:
@@ -389,24 +498,32 @@ class AIToolsScraper:
             if price_elem:
                 price_text = price_elem.get_text(strip=True)
                 if price_text and len(price_text) <= 50:
-                    tool_data['pricing'] = price_text
+                    tool_data["pricing"] = price_text
                     break
 
         return tool_data
 
     def fallback_extraction(self, soup):
         tools = []
-        ai_keywords = ['ai tool', 'artificial intelligence', 'machine learning', 'chatbot', 'automation']
+        ai_keywords = [
+            "ai tool",
+            "artificial intelligence",
+            "machine learning",
+            "chatbot",
+            "automation",
+        ]
 
         for keyword in ai_keywords:
-            elements = soup.find_all(text=lambda text: text and keyword.lower() in text.lower())
+            elements = soup.find_all(
+                text=lambda text: text and keyword.lower() in text.lower()
+            )
 
             for text_elem in elements[:10]:  # Limit to avoid too many results
                 parent = text_elem.parent
                 if parent:
                     # Try to extract meaningful data from parent elements
                     tool_data = self.extract_tool_data(parent)
-                    if tool_data.get('name'):
+                    if tool_data.get("name"):
                         tools.append(tool_data)
 
         return tools
@@ -421,7 +538,7 @@ class AIToolsScraper:
 
             tools = self.extract_tools_from_page()
             for tool in tools:
-                tool['page'] = page_num
+                tool["page"] = page_num
 
             return tools
 
@@ -454,40 +571,46 @@ class AIToolsScraper:
         unique_tools = []
 
         for tool in tools:
-            name = tool.get('name', '').lower().strip()
+            name = tool.get("name", "").lower().strip()
             if name and name not in seen_names:
                 seen_names.add(name)
                 unique_tools.append(tool)
 
         return unique_tools
 
-    def save_tools(self, tools, filename='ai_tools_scraped.json'):
-        with open(filename, 'w', encoding='utf-8') as f:
+    def save_tools(self, tools, filename=f"../etl/data/{CURRENT_TIME}_ai_tools_scraped.json"):
+        with open(filename, "w", encoding="utf-8") as f:
             json.dump(tools, f, indent=2, ensure_ascii=False)
         logger.info(f"Saved {len(tools)} tools to {filename}")
 
     def print_tools(self, tools):
         for i, tool in enumerate(tools, 1):
             print(f"\n{i}. {tool.get('name', 'Unknown Tool')}")
-            if tool.get('description'):
-                desc = tool['description'][:150] + "..." if len(tool['description']) > 150 else tool['description']
+            if tool.get("description"):
+                desc = (
+                    tool["description"][:150] + "..."
+                    if len(tool["description"]) > 150
+                    else tool["description"]
+                )
                 print(f"   Description: {desc}")
-            if tool.get('url'):
+            if tool.get("url"):
                 print(f"   URL: {tool['url']}")
-            if tool.get('tags'):
-                print(f"   Tags: {', '.join(tool['tags'][:5])}{'...' if len(tool['tags']) > 5 else ''}")
-            if tool.get('pricing'):
+            if tool.get("tags"):
+                print(
+                    f"   Tags: {', '.join(tool['tags'][:5])}{'...' if len(tool['tags']) > 5 else ''}"
+                )
+            if tool.get("pricing"):
                 print(f"   Pricing: {tool['pricing']}")
-            if tool.get('page'):
+            if tool.get("page"):
                 print(f"   Found on page: {tool['page']}")
 
     def close(self):
-        if hasattr(self, 'driver'):
+        if hasattr(self, "driver"):
             self.driver.quit()
             logger.info("WebDriver closed")
 
 
-def main(all_page:int):
+def main(all_page: int):
     scraper = None
 
     try:

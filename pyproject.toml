@@ -3,18 +3,27 @@ name = "ai-agent-directory"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Damilola Adeniyi",email = "adeniyidamilola246@gmail.com"}
+    {name = "team_data_engineering"}
 ]
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "requests (>=2.32.3,<3.0.0)",
     "beautifulsoup4 (>=4.13.4,<5.0.0)",
+    "bs4 (>=0.0.2,<0.0.3)",
+    "requests (>=2.32.3,<3.0.0)",
     "selenium (>=4.33.0,<5.0.0)",
-    "webdriver-manager (>=4.0.2,<5.0.0)"
+    "webdriver-manager (>=4.0.2,<5.0.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "black[jupyter] (>=25.1.0,<26.0.0)",
+    "pytest (>=8.3.5,<9.0.0)",
+    "pytest-cov (>=6.1.1,<7.0.0)"
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+
