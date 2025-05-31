@@ -617,8 +617,10 @@ def main(all_page: int):
             print(f"{'=' * 60}")
 
             scraper.save_tools(tools)
+
         else:
             print("No tools were scraped. The website structure might have changed.")
+        scraper.scrape_all_toolify_data_concurrent()
 
     except KeyboardInterrupt:
         print("\nScraping interrupted by user")
@@ -631,6 +633,5 @@ def main(all_page: int):
 
 
 if __name__ == "__main__":
-    # main(4)
-    scraper = AIToolsScraper(wait_time=15)
-    scraper.scrape_all_toolify_data_concurrent()
+    main(4)
+

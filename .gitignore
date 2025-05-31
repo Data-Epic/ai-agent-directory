@@ -32,4 +32,5 @@ build/
 # Operating system specific files (e.g., macOS, Windows)
 .DS_Store
 Thumbs.db
-etl/ai_tools_scraped.json
+etl/ai_tools_scraped.csv
+etl/scraper.ipynb
