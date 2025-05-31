@@ -4,13 +4,13 @@ a session factory for database operations
 """
 
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, Column, Integer
 from sqlalchemy.orm import sessionmaker, declarative_base
 from dotenv import load_dotenv
 from pathlib import Path
 import os
 
-path = Path("../../../.env")
+path = Path("../../.env_example")
 
 load_dotenv(dotenv_path=path)
 
