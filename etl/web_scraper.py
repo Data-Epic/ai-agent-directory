@@ -9,6 +9,12 @@ import json
 import time
 import random
 import logging
+import requests
+import bs4
+import re
+import csv
+import os
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -223,35 +229,6 @@ class AIToolsScraper:
                 if tool_data and tool_data.get('name'):
                     tools_found.append(tool_data)
 
-        # Fallback: try other common selectors if main list approach didn't work
-        if not tools_found:
-            logger.info("Main list approach failed, trying fallback selectors...")
-
-            selectors_to_try = [
-                '.sv-tiles-list div', '.sv-tiles-list > div', '.sv-tiles-list article',
-                '.tool-card', '.ai-tool', '.tool-item', '.directory-item',
-                '.card', '.item', '.product-card', '.listing-item',
-                '[class*="tool"]', '[class*="card"]', '[class*="item"]',
-                '.grid > div', '.list > div', '.container > div'
-            ]
-
-            for selector in selectors_to_try:
-                elements = soup.select(selector)
-                if elements and len(elements) > 2:
-                    logger.info(f"Using fallback selector '{selector}' - found {len(elements)} elements")
-
-                    for element in elements:
-                        tool_data = self.extract_tool_data(element)
-                        if tool_data and tool_data.get('name'):
-                            tools_found.append(tool_data)
-
-                    if tools_found:
-                        break
-
-        if not tools_found:
-            logger.info("Trying final fallback extraction method...")
-            tools_found = self.fallback_extraction(soup)
-
         logger.info(f"Extracted {len(tools_found)} tools from current page")
         return tools_found
 
@@ -305,7 +282,8 @@ class AIToolsScraper:
         tool_data = {}
 
         title_selectors = [
-            'h1', 'h2', 'h3', 'h4', 'h5', 'h6', '[class*="sv-tile__title sv-text-reset sv-is-link"]'  # Standard headings
+            'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+            '[class*="sv-tile__title sv-text-reset sv-is-link"]'  # Standard headings
             '.title', '.name', '.tool-name', '.product-name',  # Common title classes
             '[class*="title"]', '[class*="name"]',  # Partial class matches
             'a[href]',  # Links often contain tool names
@@ -376,21 +354,9 @@ class AIToolsScraper:
                     tags.append(tag_text)
 
         if tags:
-            tool_data['tags'] = list(set(tags))  # Remove duplicates
+            tool_data['category'] = tags[0]
 
-        price_selectors = [
-            '.price', '.pricing', '.cost', '.plan',
-            '[class*="price"]', '[class*="cost"]', '[class*="plan"]',
-            '.sv-price', '.sv-pricing'
-        ]
-
-        for selector in price_selectors:
-            price_elem = element.select_one(selector)
-            if price_elem:
-                price_text = price_elem.get_text(strip=True)
-                if price_text and len(price_text) <= 50:
-                    tool_data['pricing'] = price_text
-                    break
+        tool_data["source"] = "https://aitoolsdirectory.com"
 
         return tool_data
 
@@ -444,50 +410,192 @@ class AIToolsScraper:
                 time.sleep(delay)
 
         # Remove duplicates based on name
-        unique_tools = self.remove_duplicates(all_tools)
-        logger.info(f"Total unique tools scraped: {len(unique_tools)}")
+        logger.info(f"Total unique tools scraped: {len(all_tools)}")
 
-        return unique_tools
+        return all_tools
 
-    def remove_duplicates(self, tools):
-        seen_names = set()
-        unique_tools = []
+    def save_tools(self, tools, filename='ai_tools_scraped.csv'):
+        if not tools:
+            logger.warning("No tools to save.")
+            return
 
-        for tool in tools:
-            name = tool.get('name', '').lower().strip()
-            if name and name not in seen_names:
-                seen_names.add(name)
-                unique_tools.append(tool)
+        file_exists = os.path.isfile(filename)
+        fieldnames = tools[0].keys()
 
-        return unique_tools
+        try:
+            with open(filename, mode='a', newline='', encoding='utf-8') as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
 
-    def save_tools(self, tools, filename='ai_tools_scraped.json'):
-        with open(filename, 'w', encoding='utf-8') as f:
-            json.dump(tools, f, indent=2, ensure_ascii=False)
-        logger.info(f"Saved {len(tools)} tools to {filename}")
+                # Only write header if file is new
+                if not file_exists:
+                    writer.writeheader()
 
-    def print_tools(self, tools):
-        for i, tool in enumerate(tools, 1):
-            print(f"\n{i}. {tool.get('name', 'Unknown Tool')}")
-            if tool.get('description'):
-                desc = tool['description'][:150] + "..." if len(tool['description']) > 150 else tool['description']
-                print(f"   Description: {desc}")
-            if tool.get('url'):
-                print(f"   URL: {tool['url']}")
-            if tool.get('tags'):
-                print(f"   Tags: {', '.join(tool['tags'][:5])}{'...' if len(tool['tags']) > 5 else ''}")
-            if tool.get('pricing'):
-                print(f"   Pricing: {tool['pricing']}")
-            if tool.get('page'):
-                print(f"   Found on page: {tool['page']}")
+                writer.writerows(tools)
+
+            logger.info(f"Appended {len(tools)} tools to {filename}")
+        except Exception as e:
+            logger.error(f"Failed to append tools to CSV: {e}")
 
     def close(self):
         if hasattr(self, 'driver'):
             self.driver.quit()
             logger.info("WebDriver closed")
 
+    def scrape_toolify_categories(self):
+        logging.info("Starting scrape_toolify_categories function")
+        data = []
 
-def main(all_page:int):
+        try:
+            logging.info("Fetching page from https://www.toolify.ai/category")
+            res = requests.get("https://www.toolify.ai/category", timeout=50)
+            res.raise_for_status()
+            logging.info(f"Successfully fetched page, status code: {res.status_code}")
+        except requests.exceptions.RequestException as e:
+            logging.error(f"Failed to fetch page: {e}")
+            return data
+
+        try:
+            logging.info("Starting HTML parsing")
+            soup = bs4.BeautifulSoup(res.text, 'html.parser')
+            table = soup.find_all('div', id=re.compile(r'^group-'))
+            logging.info(f"Found {len(table)} category groups")
+
+            if not table:
+                logging.warning("No category groups found with id starting with 'group-'")
+
+            for i, row in enumerate(table):
+                logging.debug(f"Processing category group {i + 1}/{len(table)}")
+                try:
+                    title = row.find('h3').get_text(strip=True)
+                    logging.debug(f"Found category: {title}")
+                    sub_categories = []
+
+                    sub_links = row.find_all('a', class_='go-category-link')
+                    logging.debug(f"Found {len(sub_links)} subcategories for '{title}'")
+
+                    for j, sub_row in enumerate(sub_links):
+                        href = sub_row.get('href', '')
+                        full_link = f"https://www.toolify.ai{href}" if href.startswith('/') else href
+
+                        name_span = sub_row.find('span',
+                                                 class_='text-base text-gray-1000 flex-1 w-0 truncate font-medium')
+                        if name_span:
+                            name = name_span.get_text(strip=True)
+                            sub_categories.append({
+                                'name': name,
+                                'link': full_link,
+                            })
+                            logging.debug(f"Added subcategory: {name}")
+                        else:
+                            logging.info(f"Skipping subcategory {j + 1} in '{title}' - no expected span found")
+
+                    data.append({
+                        'category': title,
+                        'sub_categories': sub_categories
+                    })
+                    logging.info(f"Successfully processed category '{title}' with {len(sub_categories)} subcategories")
+                except AttributeError as e:
+                    logging.warning(f"Could not extract category block {i + 1} properly: {e}")
+        except Exception as e:
+            logging.error(f"Unexpected parsing error: {e}")
+
+        logging.info(f"scrape_toolify_categories completed successfully. Extracted {len(data)} categories")
+        return data
+
+    def scrape_toolify_subcategory(self, subcategory_url, category_name="", subcategory_name=""):
+        logging.info(f"Starting scrape_toolify_subcategory for URL: {subcategory_url}, category: {category_name}, "
+                     f"subcategory: {subcategory_name}")
+        sub_data = []
+
+        try:
+            logging.info(f"Fetching subcategory page: {subcategory_url}")
+            res = requests.get(subcategory_url, timeout=50)
+            res.raise_for_status()
+            logging.info(f"Successfully fetched subcategory page, status code: {res.status_code}")
+        except requests.exceptions.RequestException as e:
+            logging.error(f"Failed to fetch subcategory page: {e}")
+            return sub_data
+
+        try:
+            logging.info("Starting HTML parsing for subcategory")
+            soup = bs4.BeautifulSoup(res.text, 'html.parser')
+            table = soup.find_all('div', class_='tool-item mb-10 border border-2 rounded-md overflow-hidden')
+            logging.info(f"Found {len(table)} tool items in subcategory")
+
+            for i, row in enumerate(table):
+                logging.debug(f"Processing tool item {i + 1}/{len(table)}")
+                try:
+                    row_class = row.find('div', class_='tool-card bg-white p-6 flex gap-4 items-center')
+                    agent = row_class.find('div',
+                                           class_='card-text-content flex flex-col justify-between flex-1 h-full w-0')
+
+                    name = agent.find('a').find('h2').get_text(strip=True)
+                    description = agent.find('p').get_text(strip=True)
+                    visit_btn_parent = row.find('div', class_='visit-btn')
+                    if visit_btn_parent:
+                        visit_link_tag = visit_btn_parent.find_parent('a')  # Get the <a> that wraps the button
+                        if visit_link_tag and visit_link_tag.has_attr('href'):
+                            visit_url = visit_link_tag['href']
+                            full_url = visit_url
+
+                    tool_data = {
+                        "name": name,
+                        "description": description,
+                        "url": full_url,
+                        "source": "https://www.toolify.ai",
+                        "category": category_name
+                    }
+
+                    sub_data.append(tool_data)
+                    logging.debug(f"Successfully extracted tool: {name}")
+                    
+
+                except AttributeError as e:
+                    logging.warning(f"Could not parse tool item {i + 1}: {e}")
+
+        except Exception as e:
+            logging.error(f"Unexpected parsing error in subcategory scraping: {e}")
+
+        logging.info(
+            f"scrape_toolify_subcategory completed. Extracted {len(sub_data)} tools from category '{category_name}'")
+        return sub_data
+
+    def scrape_all_toolify_data_concurrent(self, max_workers=10):
+        all_tools = []
+        categories = self.scrape_toolify_categories()
+        subcat_jobs = []
+
+        for category in categories:
+            category_name = category['category']
+            for subcat in category.get('sub_categories', []):
+                subcat_name = subcat['name']
+                subcat_url = subcat['link']
+                subcat_jobs.append((category_name, subcat_url, subcat_name))
+
+        print(f"[INFO] Queued {len(subcat_jobs)} subcategories for scraping")
+
+        # Threaded scraping
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_subcat = {
+                executor.submit(self.scrape_toolify_subcategory, url, category_name, subcategory): subcategory
+                for category_name, url, subcategory in subcat_jobs
+            }
+
+            for future in as_completed(future_to_subcat):
+                subcat_name = future_to_subcat[future]
+                try:
+                    result = future.result()
+                    self.save_tools(result)
+                    all_tools.extend(result)
+                    logging.debug(f"Saved tool data for: {subcat_name}")
+                    print(f"[DONE] Scraped {len(result)} tools from: {subcat_name}")
+                except Exception as e:
+                    print(f"[ERROR] Failed scraping {subcat_name}: {e}")
+        print(f"[DONE] Scraped {len(all_tools)} tools from: {subcat_name}")
+        return all_tools
+
+
+def main(all_page: int):
     scraper = None
 
     try:
@@ -523,4 +631,6 @@ def main(all_page:int):
 
 
 if __name__ == "__main__":
-    main(4)
+    # main(4)
+    scraper = AIToolsScraper(wait_time=15)
+    scraper.scrape_all_toolify_data_concurrent()
