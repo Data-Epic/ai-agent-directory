@@ -5,10 +5,12 @@ Name: Arowosegbe Victor Iyanuoluwa
 Email: iyanuvicky@gmail.com
 Github: https://github.com/Iyanuvicky22/Projects
 """
+
 from pathlib import Path
 import os
 from datetime import datetime
 from utils.logger_config import logger
+from models import connect_db
 import pandas as pd
 
 
@@ -155,11 +157,12 @@ def transform_data(df: pd.DataFrame, source=None) -> pd.DataFrame:
 
         if "trending" not in df.columns:
             df["trending"] = None
+            df["trending"] = df["trending"].notna().astype(bool)
         else:
-            df["trending"] = df['trending'].apply(
+            df["trending"] = df["trending"].apply(
                 lambda x: False if x == "Low" else True
-                )
-        df["trending"] = df["trending"].notna().astype(bool)
+            )
+            df['trending'] = df['trending'].astype(bool)
 
         trans_df = df.rename(columns={"url": "homepage_url", "tags": "category"})
 
@@ -184,9 +187,20 @@ def merging_dfs(new_df, existing_df) -> pd.DataFrame:
     """
     try:
         merged_df = pd.merge(new_df, existing_df, how="outer")
-        merged_df.drop_duplicates(subset="name", inplace=True)
+        merged_df.drop_duplicates(subset=[
+            "name", "homepage_url"
+            ], inplace=True)
         merged_df = merged_df.reset_index(drop=True)
-        logger.info("Seed DF and Scraped DF successfully merged!")
+        logger.info("Existing DB Data and Scraped Data successfully merged!")
     except Exception as e:
         logger.error("Error merging DFs: %s", e, exc_info=True)
     return merged_df
+
+
+def fetch_db_records():
+    session, engine = connect_db()
+
+    with engine.connect() as conn:
+        db_df = pd.read_sql("SELECT * from agents", con=conn)
+        conn.commit()
+    return db_df

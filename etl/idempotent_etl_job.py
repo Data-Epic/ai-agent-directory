@@ -16,7 +16,7 @@ scraped_data_source = r"C:\Users\APIN PC\OneDrive\Documents\DS\DE_Inter\data_epi
 
 def run_basic_etl() -> pd.DataFrame:
     """
-    Basic ETL Job. 
+    Basic ETL Job.
     Returns:
         pd.DataFrame: Ai tools data to run etl job on.
     """
@@ -35,5 +35,5 @@ def run_basic_etl() -> pd.DataFrame:
     return trans_scraped_df
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run_basic_etl()

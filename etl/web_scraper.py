@@ -578,7 +578,9 @@ class AIToolsScraper:
 
         return unique_tools
 
-    def save_tools(self, tools, filename=f"../etl/data/{CURRENT_TIME}_ai_tools_scraped.json"):
+    def save_tools(
+        self, tools, filename=f"../etl/data/{CURRENT_TIME}_ai_tools_scraped.json"
+    ):
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(tools, f, indent=2, ensure_ascii=False)
         logger.info(f"Saved {len(tools)} tools to {filename}")

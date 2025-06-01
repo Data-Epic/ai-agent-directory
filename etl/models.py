@@ -5,9 +5,19 @@ Name: Arowosegbe Victor Iyanuoluwa\n
 Email: Iyanuvicky@gmail.com\n
 GitHub: https://github.com/Iyanuvicky22/projects
 """
+
 import os
 from dotenv import load_dotenv
-from sqlalchemy import create_engine, Column, String, Text, Boolean, DateTime, func, Integer
+from sqlalchemy import (
+    create_engine,
+    Column,
+    String,
+    Text,
+    Boolean,
+    DateTime,
+    func,
+    Integer,
+)
 from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy.exc import SQLAlchemyError
 from utils.logger_config import logger
@@ -46,6 +56,7 @@ class Agent(Base):
     Args:
         Base (): SQLAlchemy Base model
     """
+
     __tablename__ = "agents"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -55,8 +66,10 @@ class Agent(Base):
     category = Column(String)
     source = Column(String)
     trending = Column(Boolean, default=False)
-    created_at = Column(DateTime, server_default=func.now(), nullable=True)
-    updated_at = Column(DateTime, onupdate=func.now(), nullable=True)
+    created_at = Column(DateTime, server_default=func.now(), nullable=False)
+    updated_at = Column(
+        DateTime, server_default=func.now(), onupdate=func.now(), nullable=False
+    )
 
 
 def load_data(df: pd.DataFrame):
@@ -70,9 +83,7 @@ def load_data(df: pd.DataFrame):
 
     with Session.begin() as session:
         for _, row in data.iterrows():
-            ai_tool = session.query(Agent).filter_by(
-                name=str(row["name"])
-                ).first()
+            ai_tool = session.query(Agent).filter_by(name=str(row["name"])).first()
 
             if not ai_tool:
                 agent = Agent(
