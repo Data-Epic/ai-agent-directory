@@ -17,11 +17,15 @@ import csv
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-CURRENT_TIME = datetime.now().strftime("%d-%m-%Y")
-
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+log_dir = "logs"
+os.makedirs(log_dir, exist_ok=True)
+log_path =os.path.join(log_dir, f"{timestamp}_scrape.log")
 # Setup logging
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s",
+    filename=log_path,
+    filemode='w',
 )
 logger = logging.getLogger(__name__)
 
@@ -358,8 +362,6 @@ class AIToolsScraper:
             self.scroll_to_load_content()
 
             tools = self.extract_tools_from_page()
-            for tool in tools:
-                tool["page"] = page_num
 
             return tools
 
@@ -381,12 +383,11 @@ class AIToolsScraper:
                 logger.info(f"Waiting {delay:.1f} seconds before next page...")
                 time.sleep(delay)
 
-        # Remove duplicates based on name
         logger.info(f"Total unique tools scraped: {len(all_tools)}")
 
         return all_tools
 
-    def save_tools(self, tools, filename=f'../etl/data/{CURRENT_TIME}_ai_tools_scraped.csv'):
+    def save_tools(self, tools, filename=f'data/{timestamp}_ai_tools_scraped.csv'):
         if not tools:
             logger.warning("No tools to save.")
             return
