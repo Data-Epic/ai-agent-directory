@@ -7,9 +7,22 @@ Github: https://github.com/Iyanuvicky22/Projects
 """
 from pathlib import Path
 import os
-from datetime import datetime
+from datetime import datetime, timezone
+
+import boto3
+from dotenv import load_dotenv
 from utils.logger_config import logger
 import pandas as pd
+
+load_dotenv()
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_KEY = os.environ.get("AWS_SECRET_KEY")
+AWS_REGION = os.environ.get("AWS_REGION")
+s3 = boto3.client("s3", region_name=AWS_REGION,
+                  aws_access_key_id=AWS_ACCESS_KEY_ID,
+                  aws_secret_access_key=AWS_SECRET_KEY)
+
+bucket_name = 'scraped-ai-agent'
 
 
 def read_data(source_path: str) -> pd.DataFrame:
@@ -158,7 +171,7 @@ def transform_data(df: pd.DataFrame, source=None) -> pd.DataFrame:
         else:
             df["trending"] = df['trending'].apply(
                 lambda x: False if x == "Low" else True
-                )
+            )
         df["trending"] = df["trending"].notna().astype(bool)
 
         trans_df = df.rename(columns={"url": "homepage_url", "tags": "category"})
@@ -190,3 +203,40 @@ def merging_dfs(new_df, existing_df) -> pd.DataFrame:
     except Exception as e:
         logger.error("Error merging DFs: %s", e, exc_info=True)
     return merged_df
+
+
+def dump_raw_data_to_s3(file_path: str):
+    try:
+        s3.upload_file(file_path, bucket_name, f"{os.path.basename(file_path)}")
+        logger.info(f"Successfully upload to s3://{bucket_name}/{file_path}")
+        os.remove(file_path)
+    except Exception as e:
+        logger.error(f"Uploading failed: {e}")
+
+
+def fetch_latest_csv_from_s3(download_dir='downloads'):
+
+    try:
+        response = s3.list_objects_v2(Bucket=bucket_name)
+        contents = response.get('Contents', [])
+
+        # Filter for CSV files and sort by last modified time
+        csv_files = [obj for obj in contents if obj['Key'].endswith('.csv')]
+        if not csv_files:
+            logger.info("❌ No CSV files found.")
+            return None
+
+        latest_file = max(csv_files, key=lambda x: x['LastModified'])
+        latest_key = latest_file['Key']
+        filename = os.path.basename(latest_key)
+        local_path = os.path.join(download_dir, filename)
+
+        os.makedirs(download_dir, exist_ok=True)
+        s3.download_file(bucket_name, latest_key, local_path)
+
+        logger.info(f"✅ Downloaded latest CSV: {latest_key} → {local_path}")
+        return local_path
+
+    except Exception as e:
+        logger.error(f"❌ Failed to fetch from S3: {e}")
+        return None
