@@ -96,6 +96,8 @@ def extract_tool_data(element):
             elif href.startswith("/"):
                 tool_data["url"] = f"https://aitoolsdirectory.com{href}"
 
+    tool_data["source"] = "https://aitoolsdirectory.com"
+
     tag_selectors = [
         ".tag",
         ".category",
@@ -119,20 +121,6 @@ def extract_tool_data(element):
 
     if tags:
         tool_data['category'] = tags[0]
-
-    tool_data["source"] = "https://aitoolsdirectory.com"
-
-    price_selectors = [
-        ".price",
-        ".pricing",
-        ".cost",
-        ".plan",
-        '[class*="price"]',
-        '[class*="cost"]',
-        '[class*="plan"]',
-        ".sv-price",
-        ".sv-pricing",
-    ]
 
     return tool_data
 

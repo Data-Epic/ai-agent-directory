@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 import os
 
-path = Path("../../../.env")
+path = Path("../../.env_example")
 
 load_dotenv(dotenv_path=path)
 
