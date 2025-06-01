@@ -10,8 +10,9 @@ from pathlib import Path
 from utils.utils import read_data, clean_data, transform_data
 from models import load_data
 import pandas as pd
+from utils.utils import fetch_latest_csv_from_s3
 
-scraped_data_source = r"C:\Users\APIN PC\OneDrive\Documents\DS\DE_Inter\data_epic_capstone\etl\data\29-05-2025_ai_tools_scraped.json"
+
 
 
 def run_basic_etl() -> pd.DataFrame:
@@ -20,6 +21,9 @@ def run_basic_etl() -> pd.DataFrame:
     Returns:
         pd.DataFrame: Ai tools data to run etl job on.
     """
+    # download latest file from s3
+    scraped_data_source = fetch_latest_csv_from_s3()
+
     scraped_df = read_data(scraped_data_source)
 
     clean_scraped_df = clean_data(scraped_df)
