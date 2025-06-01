@@ -50,14 +50,14 @@ def connect_db():
     return Session, engine
 
 
-class Agent(Base):
+class AiAgent(Base):
     """
     Agents table model creation
     Args:
         Base (): SQLAlchemy Base model
     """
 
-    __tablename__ = "agents"
+    __tablename__ = "ai_agents"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False, index=True)
@@ -83,10 +83,10 @@ def load_data(df: pd.DataFrame):
 
     with Session.begin() as session:
         for _, row in data.iterrows():
-            ai_tool = session.query(Agent).filter_by(name=str(row["name"])).first()
+            ai_tool = session.query(AiAgent).filter_by(name=str(row["name"])).first()
 
             if not ai_tool:
-                agent = Agent(
+                ai_agent = AiAgent(
                     name=str(row["name"]),
                     description=str(row["description"]),
                     homepage_url=row["homepage_url"],
@@ -96,6 +96,6 @@ def load_data(df: pd.DataFrame):
                     created_at=row["created_at"],
                     updated_at=row["updated_at"],
                 )
-                session.add(agent)
+                session.add(ai_agent)
         session.commit()
         logger.info("Data successfully loaded in database!")

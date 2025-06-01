@@ -4,6 +4,7 @@ Utils function for ETL Job.
 Name: Arowosegbe Victor Iyanuoluwa
 Email: iyanuvicky@gmail.com
 Github: https://github.com/Iyanuvicky22/Projects
+*** remove created_at()
 """
 
 from pathlib import Path
@@ -172,6 +173,7 @@ def transform_data(df: pd.DataFrame, source=None) -> pd.DataFrame:
         trans_df["updated_at"] = pd.to_datetime(
             trans_df["updated_at"], format="%Y-%M-%d", errors="coerce"
         )
+        ## add logic to check column names tally with db names
 
         logger.info("Data successfully transformed!")
     except Exception as e:

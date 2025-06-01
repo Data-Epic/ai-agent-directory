@@ -24,11 +24,7 @@ def run_basic_etl() -> pd.DataFrame:
 
     clean_scraped_df = clean_data(scraped_df)
 
-    trans_scraped_df = transform_data(
-        clean_scraped_df, source="https://aitoolsdirectory.com/"
-    )
-    # # Merge Datasets
-    # final_df = merging_dfs(trans_seed_df, trans_scraped_df)
+    trans_scraped_df = transform_data(clean_scraped_df)
 
     load_data(trans_scraped_df)
 
