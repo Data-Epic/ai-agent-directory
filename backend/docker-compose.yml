@@ -19,8 +19,8 @@ services:
     container_name: fastapi-backend
     restart: always
     environment:
-      DB_HOST: postgres  # matches service name in docker-compose
-      DB_PORT: 5432      # default postgres port in container
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
