@@ -3,7 +3,7 @@ https://blog.devops.dev/level-up-your-development-workflow-with-pre-commit-and-g
 
 
 ## Folde Structure
-.
+```bash
 ├── Dockerfile
 ├── Readme.md
 ├── __init__.py
@@ -112,3 +112,4 @@ https://blog.devops.dev/level-up-your-development-workflow-with-pre-commit-and-g
 ├── poetry.lock
 ├── pyproject.toml
 └── pytest.ini
+```
