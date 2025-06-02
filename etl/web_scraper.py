@@ -16,8 +16,10 @@ import re
 import csv
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from utils.utils import dump_raw_data_to_s3
 
-timestamp = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+filename = f'data/{timestamp}_ai_tools_scraped.csv'
 
 def extract_tool_data(element):
     tool_data = {}
@@ -364,7 +366,7 @@ class AIToolsScraper:
 
         return all_tools
 
-    def save_tools(self, tools, filename=f'../etl/data/{timestamp}_ai_tools_scraped.csv'):
+    def save_tools(self, tools):
         if not tools:
             logger.warning("No tools to save.")
             return
@@ -569,6 +571,7 @@ def main(all_page: int):
             print("No tools were scraped. The website structure might have changed.")
         # scrape toolify website
         scraper.scrape_all_toolify_data_concurrent()
+        dump_raw_data_to_s3(filename)
 
     except KeyboardInterrupt:
         print("\nScraping interrupted by user")
@@ -582,3 +585,5 @@ def main(all_page: int):
 
 if __name__ == "__main__":
     main(4)
+    # dump_raw_data_to_s3('data/20250601_231255_ai_tools_scraped.csv')
+    #
