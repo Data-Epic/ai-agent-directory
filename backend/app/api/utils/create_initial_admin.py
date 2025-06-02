@@ -1,9 +1,9 @@
+import os
+
 from auth.auth import hashed_password
 from core.database import SessionLocal
 from core.models.user import User
-import os
 from dotenv import load_dotenv
-
 
 load_dotenv()
 
@@ -12,6 +12,7 @@ ADMIN_LNAME = os.getenv("ADMIN_LNAME")
 ADMIN_USER = os.getenv("ADMIN_USER")
 ADMIN_EMAIL = os.getenv("ADMIN_EMAIL")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
+
 
 def create_initial_admin():
     db = SessionLocal()

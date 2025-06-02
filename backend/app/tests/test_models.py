@@ -1,11 +1,12 @@
 from datetime import datetime
 from uuid import uuid4
 
+from sqlalchemy import UUID
+
 from ..core.models.agent import Agent
 from ..core.models.highlight import Highlight
 from ..core.models.review import Review
 from ..core.models.user import User
-from sqlalchemy import UUID
 
 
 def test_create_user_object():
