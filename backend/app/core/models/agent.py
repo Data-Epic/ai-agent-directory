@@ -9,6 +9,7 @@ https://docs.sqlalchemy.org/en/14/core/defaults.html#client-invoked-sql-expressi
 from core.database import Base
 from sqlalchemy import VARCHAR, Column, DateTime, Integer, String, func
 from sqlalchemy.orm import relationship
+from sqlalchemy import text
 
 
 class Agent(Base):
@@ -20,7 +21,7 @@ class Agent(Base):
     homepage_url = Column(VARCHAR(100))
     category = Column(VARCHAR(1000))
     source = Column(VARCHAR(1000))
-    trending = Column(Integer, default=0)
+    trending = Column(Integer, default=0,server_default=text("0"),nullable=False)
     created_at = Column(DateTime, default=func.now(), nullable=False)
     updated_at = Column(
         DateTime, default=func.now(), onupdate=func.now(), nullable=False
