@@ -1,11 +1,3 @@
-"""
-Ai_tools ETL Local DB Setup and data upload
-
-Name: Arowosegbe Victor Iyanuoluwa\n
-Email: Iyanuvicky@gmail.com\n
-GitHub: https://github.com/Iyanuvicky22/projects
-"""
-
 import os
 from dotenv import load_dotenv
 from sqlalchemy import (
@@ -68,8 +60,7 @@ class AiAgent(Base):
     trending = Column(Boolean, default=False)
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
     updated_at = Column(
-        DateTime, server_default=func.now(), onupdate=func.now(), nullable=False
-    )
+        DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
 
 
 def load_data(df: pd.DataFrame):

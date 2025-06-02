@@ -24,6 +24,5 @@ def trans_load_seed_df():
 
     return trans_seed_df
 
-
 if __name__ == "__main__":
     trans_load_seed_df()

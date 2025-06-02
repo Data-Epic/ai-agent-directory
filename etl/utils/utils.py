@@ -10,17 +10,16 @@ Github: https://github.com/Iyanuvicky22/Projects
 from pathlib import Path
 import os
 from datetime import datetime, timezone
-
 import boto3
 from dotenv import load_dotenv
 from utils.logger_config import logger
 from models import connect_db
 import pandas as pd
 
-load_dotenv()
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-AWS_SECRET_KEY = os.environ.get("AWS_SECRET_KEY")
-AWS_REGION = os.environ.get("AWS_REGION")
+load_dotenv(dotenv_path='.env')
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
+AWS_REGION = os.getenv("AWS_REGION")
 s3 = boto3.client("s3", region_name=AWS_REGION,
                   aws_access_key_id=AWS_ACCESS_KEY_ID,
                   aws_secret_access_key=AWS_SECRET_KEY)
@@ -60,7 +59,7 @@ def read_data(source_path: str) -> pd.DataFrame:
 
 def remove_hashtags(tags):
     """
-    Method to clean tags column from "https://aitoolsdirectory.com/"
+    Method to clean category column from "https://aitoolsdirectory.com/"
     Args:
         tags (Series): Column to be cleaned
 
@@ -154,8 +153,11 @@ def transform_data(df: pd.DataFrame, source=None) -> pd.DataFrame:
         else:
             df["source"] = source
 
-        if "created_at" in df.columns & df['created_at'] is not None:
-            pass
+        if "created_at" in df.columns:
+            if df['created_at'] is not None:
+                pass
+            else:
+                df["created_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         else:
             df["created_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -168,21 +170,17 @@ def transform_data(df: pd.DataFrame, source=None) -> pd.DataFrame:
             df["trending"] = df["trending"].apply(
                 lambda x: False if x == "Low" else True
             )
-<<<<<<< HEAD
-            df['trending'] = df['trending'].astype(bool)
-=======
         df["trending"] = df["trending"].notna().astype(bool)
->>>>>>> 04b218b939e74fe1f0bfdb2c6e30166728c56be0
 
         trans_df = df.rename(columns={"url": "homepage_url", "tags": "category"})
 
         trans_df["created_at"] = pd.to_datetime(
-            trans_df["created_at"], format="%Y-%M-%d", errors="coerce"
+            trans_df["created_at"], format="%Y-%m-%d %H:%M:%S", errors="coerce"
         )
         trans_df["updated_at"] = pd.to_datetime(
-            trans_df["updated_at"], format="%Y-%M-%d", errors="coerce"
+            trans_df["updated_at"], format="%Y-%m-%d %H:%M:%S", errors="coerce"
         )
-        ## add logic to check column names tally with db names
+        trans_df = trans_df.drop_duplicates(subset=['name', 'homepage_url'])
 
         logger.info("Data successfully transformed!")
     except Exception as e:
@@ -208,7 +206,6 @@ def merging_dfs(new_df, existing_df) -> pd.DataFrame:
     return merged_df
 
 
-<<<<<<< HEAD
 def fetch_db_records():
     session, engine = connect_db()
 
@@ -216,7 +213,8 @@ def fetch_db_records():
         db_df = pd.read_sql("SELECT * from agents", con=conn)
         conn.commit()
     return db_df
-=======
+
+
 def dump_raw_data_to_s3(file_path: str):
     try:
         s3.upload_file(file_path, bucket_name, f"{os.path.basename(file_path)}")
@@ -252,4 +250,3 @@ def fetch_latest_csv_from_s3(download_dir='downloads'):
     except Exception as e:
         logger.error(f"❌ Failed to fetch from S3: {e}")
         return None
->>>>>>> 04b218b939e74fe1f0bfdb2c6e30166728c56be0
