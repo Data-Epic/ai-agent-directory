@@ -1,13 +1,36 @@
 version: '3.8'
 
 services:
-  postgress:
-    image: postgres
+  postgres:
+    image: postgres:13
     container_name: postgres-backend
     restart: always
     environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: fastapi-backend
+    restart: always
+    environment:
+      DB_HOST: postgres  # matches service name in docker-compose
+      DB_PORT: 5432      # default postgres port in container
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8090:8090"
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+      - /app/__pycache__
+
+volumes:
+  postgres_data:
