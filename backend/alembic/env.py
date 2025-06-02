@@ -1,21 +1,22 @@
+import os
+import sys
+
+# Add your project root to sys.path
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "app"))
+)
+
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
+from decouple import config as envconfig
+from sqlalchemy import engine_from_config, pool
 
 from alembic import context
-
-from decouple import config as envconfig
-
-from app.core.models.user import User
+from app.core.database import Base
 from app.core.models.agent import Agent
 from app.core.models.highlight import Highlight
-from app.core.models.rating import Rating
 from app.core.models.review import Review
-
-from app.core.database import Base
-
-
+from app.core.models.user import User
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

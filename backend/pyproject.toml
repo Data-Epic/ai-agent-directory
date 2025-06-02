@@ -21,8 +21,19 @@ python-decouple = "^3.8"
 fastapi-pagination = "^0.13.1"
 pydantic = {extras = ["email"], version = "^2.11.5"}
 pytz = "^2025.2"
+pre-commit = "^4.2.0"
+pylint = "^3.3.7"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 79
+
+[tool.flake8]
+max-line-length = 114
+
+[tool.isort]
+line_length = 79
