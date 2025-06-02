@@ -86,8 +86,8 @@ def clean_data(df):
         new_df = df.dropna()
         new_df = new_df.reset_index(drop=True)
 
-        if "tags" in df.columns:
-            new_df["tags"] = new_df["tags"].apply(remove_hashtags)
+        if "category" in df.columns:
+            new_df["category"] = new_df["category"].apply(remove_hashtags)
         else:
             pass
 
@@ -141,20 +141,12 @@ def transform_data(df: pd.DataFrame, source=None) -> pd.DataFrame:
         else:
             df["source"] = source
 
-        if "created_at" in df.columns:
-            if df["created_at"] is not None:
-                pass
-            else:
-                df["created_at"] = None
+        if "created_at" in df.columns & df['created_at'] is not None:
+            pass
         else:
-            df["created_at"] = None
-        if "updated_at" in df.columns:
-            if df["updated_at"] is not None:
-                pass
-            else:
-                df["updated_at"] = None
-        else:
-            df["updated_at"] = None
+            df["created_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        df["updated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         if "trending" not in df.columns:
             df["trending"] = None

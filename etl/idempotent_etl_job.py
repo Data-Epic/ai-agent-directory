@@ -26,7 +26,7 @@ def run_basic_etl() -> pd.DataFrame:
 
     trans_scraped_df = transform_data(clean_scraped_df)
 
-    load_data(trans_scraped_df)
+    # load_data(trans_scraped_df)
 
     return trans_scraped_df
 
