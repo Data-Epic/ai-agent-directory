@@ -10,6 +10,8 @@ from utils.utils import read_data, clean_data, transform_data
 from models import load_data
 import pandas as pd
 from utils.utils import fetch_latest_csv_from_s3, fetch_db_records, merging_dfs
+from utils.logger_config import logger
+
 
 
 def run_basic_etl() -> pd.DataFrame:
@@ -32,10 +34,10 @@ def run_basic_etl() -> pd.DataFrame:
     final_df = merging_dfs(trans_scraped_df, existing_db_df)
 
     load_data(final_df)
+    logger.info(f"📦 ETL complete: {len(final_df)} total tools after merge.")
 
     return final_df
 
 
 if __name__ == "__main__":
     run_basic_etl()
-

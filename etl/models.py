@@ -12,8 +12,8 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy.exc import SQLAlchemyError
-from utils.logger_config import logger
 import pandas as pd
+from utils.logger_config import logger
 
 load_dotenv(dotenv_path=".env")
 
@@ -73,20 +73,35 @@ def load_data(df: pd.DataFrame):
     data = df
 
     with Session.begin() as session:
-        for _, row in data.iterrows():
-            ai_tool = session.query(AiAgent).filter_by(name=str(row["name"])).first()
-
-            if not ai_tool:
-                ai_agent = AiAgent(
+        try:
+            for _, row in data.iterrows():
+                ai_tool = session.query(AiAgent).filter_by(
                     name=str(row["name"]),
-                    description=str(row["description"]),
-                    homepage_url=row["homepage_url"],
-                    category=row["category"],
-                    source=row["source"],
-                    trending=row["trending"],
-                    created_at=row["created_at"],
-                    updated_at=row["updated_at"],
-                )
-                session.add(ai_agent)
-        session.commit()
-        logger.info("Data successfully loaded in database!")
+                    homepage_url=row['homepage_url']                                 
+                    ).first()
+
+                if ai_tool:
+                    ai_tool.description = row.get("description", ai_tool.description)
+                    ai_tool.category = row.get("category", ai_tool.category)
+                    ai_tool.source = row.get("source", ai_tool.source)
+                    ai_tool.updated_at = row.get("updated_at", ai_tool.updated_at)
+                else:
+                    ai_tool = AiAgent(
+                        name=str(row["name"]),
+                        description=str(row["description"]),
+                        homepage_url=row["homepage_url"],
+                        category=row["category"],
+                        source=row["source"],
+                        trending=row["trending"],
+                        created_at=row["created_at"],
+                        updated_at=row["updated_at"],
+                    )
+                    session.add(ai_tool)
+            session.commit()
+            logger.info("Data successfully loaded in database!")
+        except Exception as e:
+            logger.error("Data upload failed: %s", e, exc_info=True)
+            session.rollback()
+        finally:
+            session.close()
+

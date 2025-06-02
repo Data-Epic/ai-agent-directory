@@ -164,13 +164,13 @@ def transform_data(df: pd.DataFrame, source=None) -> pd.DataFrame:
         df["updated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         if "trending" not in df.columns:
-            df["trending"] = None
-            df["trending"] = df["trending"].notna().astype(bool)
+            df["trending"] = 0
+            # df["trending"] = df["trending"].notna().astype(bool)
         else:
             df["trending"] = df["trending"].apply(
-                lambda x: False if x == "Low" else True
+                lambda x: 0 if x == "Low" else 1
             )
-        df["trending"] = df["trending"].notna().astype(bool)
+        df["trending"] = 0
 
         trans_df = df.rename(columns={"url": "homepage_url", "tags": "category"})
 
