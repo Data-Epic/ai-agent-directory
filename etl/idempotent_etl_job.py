@@ -41,5 +41,5 @@ def run_basic_etl() -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    data = run_basic_etl()
+    run_basic_etl()
 

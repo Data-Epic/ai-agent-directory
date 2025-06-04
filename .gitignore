@@ -34,5 +34,5 @@ build/
 .DS_Store
 Thumbs.db
 etl/ai_tools_scraped.csv
-etl/scraper.ipynb
+etl/etl_job.ipynb
 .csv

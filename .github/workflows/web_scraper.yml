@@ -39,6 +39,9 @@ jobs:
     - name: Run the scraper
       run: poetry run python etl/web_scraper.py
 
+    - name: Run Idempotent etl jobs
+      run: poetry run python etl/idempotent_etl_job.py
+
     - name: Commit scraped data
       run: |
         git config user.name "github-actions[bot]"
