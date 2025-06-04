@@ -211,6 +211,7 @@ def fetch_db_records():
 
     with engine.connect() as conn:
         db_df = pd.read_sql("SELECT * from agents", con=conn)
+        db_df = db_df.drop(columns='id')
         conn.commit()
     return db_df
 
