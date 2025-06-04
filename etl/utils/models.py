@@ -16,7 +16,6 @@ DB_PORT = os.environ.get('DB_PORT')# or os.getenv("DB_PORT")
 DB_NAME = os.environ.get('DB_NAME')# or os.getenv("DB_NAME")
 
 DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-logger.info(DB_NAME)
 Base = declarative_base()
 
 expected_schema = {

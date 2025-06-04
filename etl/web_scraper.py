@@ -20,6 +20,7 @@ from utils.utils import dump_raw_data_to_s3
 
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 filename = f'data/{timestamp}_ai_tools_scraped.csv'
+os.makedirs(os.path.dirname(filename), exist_ok=True)
 
 
 def extract_tool_data(element):
@@ -126,6 +127,24 @@ def extract_tool_data(element):
         tool_data['category'] = tags[0]
 
     return tool_data
+
+
+def save_tools(tools):
+    if not tools:
+        logger.warning("No tools to save.")
+        return
+    file_exists = os.path.isfile(filename)
+    fieldnames = tools[0].keys()
+
+    try:
+        with open(filename, mode='a', newline='', encoding='utf-8') as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            if not file_exists:
+                writer.writeheader()
+            writer.writerows(tools)
+        print(f"Appended {len(tools)} tools to {filename}")
+    except Exception as e:
+        print(f"Failed to append tools to CSV: {e}")
 
 
 class AIToolsScraper:
@@ -367,24 +386,6 @@ class AIToolsScraper:
 
         return all_tools
 
-    def save_tools(self, tools):
-        if not tools:
-            logger.warning("No tools to save.")
-            return
-        file_exists = os.path.isfile(filename)
-        fieldnames = tools[0].keys()
-
-        try:
-            with open(filename, mode='a', newline='', encoding='utf-8') as f:
-                writer = csv.DictWriter(f, fieldnames=fieldnames)
-
-                # Only write header if file is new
-                if not file_exists:
-                    writer.writeheader()
-            logger.info(f"Appended {len(tools)} tools to {filename}")
-        except Exception as e:
-            logger.error(f"Failed to append tools to CSV: {e}")
-
     def close(self):
         if hasattr(self, "driver"):
             self.driver.quit()
@@ -468,7 +469,7 @@ class AIToolsScraper:
         try:
             logger.info("Starting HTML parsing for subcategory")
             soup = bs4.BeautifulSoup(res.text, 'html.parser')
-            table = soup.find_all('div', class_='tool-item mb-10 border border-2 rounded-md overflow-hidden')
+            table = soup.find_all('div', class_='mb-12')
             logger.info(f"Found {len(table)} tool items in subcategory")
 
             for i, row in enumerate(table):
@@ -535,7 +536,7 @@ class AIToolsScraper:
                 subcat_name = future_to_subcat[future]
                 try:
                     result = future.result()
-                    self.save_tools(result)
+                    save_tools(result)
                     all_tools.extend(result)
                     logger.debug(f"Saved tool data for: {subcat_name}")
                     print(f"[DONE] Scraped {len(result)} tools from: {subcat_name}")
@@ -566,7 +567,7 @@ def main(all_page: int):
             print(f"SCRAPING COMPLETED - Found {len(tools)} unique AI tools")
             print(f"{'=' * 60}")
 
-            scraper.save_tools(tools)
+            save_tools(tools)
 
         else:
             print("No tools were scraped. The website structure might have changed.")
