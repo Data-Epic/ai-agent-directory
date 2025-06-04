@@ -19,7 +19,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from utils.utils import dump_raw_data_to_s3
 
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-filename = f'ai-agent-directory/etl/data/{timestamp}_ai_tools_scraped.csv'
+filename = f'data/{timestamp}_ai_tools_scraped.csv'
+os.makedirs(os.path.dirname(filename), exist_ok=True)
 
 
 def extract_tool_data(element):
@@ -132,7 +133,6 @@ def save_tools(tools):
     if not tools:
         logger.warning("No tools to save.")
         return
-
     file_exists = os.path.isfile(filename)
     fieldnames = tools[0].keys()
 
@@ -142,9 +142,9 @@ def save_tools(tools):
             if not file_exists:
                 writer.writeheader()
             writer.writerows(tools)
-        logger.info(f"Appended {len(tools)} tools to {filename}")
+        print(f"Appended {len(tools)} tools to {filename}")
     except Exception as e:
-        logger.error(f"Failed to append tools to CSV: {e}")
+        print(f"Failed to append tools to CSV: {e}")
 
 
 class AIToolsScraper:
