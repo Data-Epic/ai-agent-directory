@@ -36,7 +36,6 @@ def connect_db():
     Database connector
     """
     try:
-        print(DB_URL)
         engine = create_engine(DB_URL)
         Session = sessionmaker(bind=engine, autoflush=False)
         Base.metadata.create_all(engine)
