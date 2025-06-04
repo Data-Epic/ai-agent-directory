@@ -7,7 +7,7 @@ Github: https://github.com/Iyanuvicky22/Projects
 """
 from pathlib import Path
 from utils.utils import read_data, clean_data, transform_data
-from models import upsert_agents
+from utils.models import upsert_agents
 import pandas as pd
 from utils.utils import fetch_latest_csv_from_s3, fetch_db_records, merging_dfs
 from utils.logger_config import logger
