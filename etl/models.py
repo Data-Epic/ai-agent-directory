@@ -53,8 +53,6 @@ def enforce_schema(df: pd.DataFrame, schema: dict) -> pd.DataFrame:
         df[col] = df[col].astype(dtype)
     return df[list(schema.keys())]
 
-
-# 3. Function to insert or update records
 def upsert_agents(df: pd.DataFrame):
     df = enforce_schema(df, expected_schema)
     data = [tuple(row) for row in df.to_numpy()]
