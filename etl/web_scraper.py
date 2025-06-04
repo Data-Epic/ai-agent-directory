@@ -9,7 +9,7 @@ from datetime import datetime
 import json
 import time
 import random
-import logging
+from utils.logger_config import logger
 import requests
 import bs4
 import re
@@ -19,17 +19,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from utils.utils import dump_raw_data_to_s3
 
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-log_dir = "logs"
-os.makedirs(log_dir, exist_ok=True)
-log_path =os.path.join(log_dir, f"{timestamp}_scrape.log")
-# Setup logging
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s",
-    filename=log_path,
-    filemode='w',
-)
-logger = logging.getLogger(__name__)
-filename=f'data/{timestamp}_ai_tools_scraped.csv'
+filename = f'data/{timestamp}_ai_tools_scraped.csv'
 
 def extract_tool_data(element):
     tool_data = {}
@@ -390,9 +380,6 @@ class AIToolsScraper:
                 # Only write header if file is new
                 if not file_exists:
                     writer.writeheader()
-
-                writer.writerows(tools)
-
             logger.info(f"Appended {len(tools)} tools to {filename}")
         except Exception as e:
             logger.error(f"Failed to append tools to CSV: {e}")
@@ -403,36 +390,36 @@ class AIToolsScraper:
             logger.info("WebDriver closed")
 
     def scrape_toolify_categories(self):
-        logging.info("Starting scrape_toolify_categories function")
+        logger.info("Starting scrape_toolify_categories function")
         data = []
 
         try:
-            logging.info("Fetching page from https://www.toolify.ai/category")
+            logger.info("Fetching page from https://www.toolify.ai/category")
             res = requests.get("https://www.toolify.ai/category", timeout=50)
             res.raise_for_status()
-            logging.info(f"Successfully fetched page, status code: {res.status_code}")
+            logger.info(f"Successfully fetched page, status code: {res.status_code}")
         except requests.exceptions.RequestException as e:
-            logging.error(f"Failed to fetch page: {e}")
+            logger.error(f"Failed to fetch page: {e}")
             return data
 
         try:
-            logging.info("Starting HTML parsing")
+            logger.info("Starting HTML parsing")
             soup = bs4.BeautifulSoup(res.text, 'html.parser')
             table = soup.find_all('div', id=re.compile(r'^group-'))
-            logging.info(f"Found {len(table)} category groups")
+            logger.info(f"Found {len(table)} category groups")
 
             if not table:
-                logging.warning("No category groups found with id starting with 'group-'")
+                logger.warning("No category groups found with id starting with 'group-'")
 
             for i, row in enumerate(table):
-                logging.debug(f"Processing category group {i + 1}/{len(table)}")
+                logger.debug(f"Processing category group {i + 1}/{len(table)}")
                 try:
                     title = row.find('h3').get_text(strip=True)
-                    logging.debug(f"Found category: {title}")
+                    logger.debug(f"Found category: {title}")
                     sub_categories = []
 
                     sub_links = row.find_all('a', class_='go-category-link')
-                    logging.debug(f"Found {len(sub_links)} subcategories for '{title}'")
+                    logger.debug(f"Found {len(sub_links)} subcategories for '{title}'")
 
                     for j, sub_row in enumerate(sub_links):
                         href = sub_row.get('href', '')
@@ -446,45 +433,45 @@ class AIToolsScraper:
                                 'name': name,
                                 'link': full_link,
                             })
-                            logging.debug(f"Added subcategory: {name}")
+                            logger.debug(f"Added subcategory: {name}")
                         else:
-                            logging.info(f"Skipping subcategory {j + 1} in '{title}' - no expected span found")
+                            logger.info(f"Skipping subcategory {j + 1} in '{title}' - no expected span found")
 
                     data.append({
                         'category': title,
                         'sub_categories': sub_categories
                     })
-                    logging.info(f"Successfully processed category '{title}' with {len(sub_categories)} subcategories")
+                    logger.info(f"Successfully processed category '{title}' with {len(sub_categories)} subcategories")
                 except AttributeError as e:
-                    logging.warning(f"Could not extract category block {i + 1} properly: {e}")
+                    logger.warning(f"Could not extract category block {i + 1} properly: {e}")
         except Exception as e:
-            logging.error(f"Unexpected parsing error: {e}")
+            logger.error(f"Unexpected parsing error: {e}")
 
-        logging.info(f"scrape_toolify_categories completed successfully. Extracted {len(data)} categories")
+        logger.info(f"scrape_toolify_categories completed successfully. Extracted {len(data)} categories")
         return data
 
     def scrape_toolify_subcategory(self, subcategory_url, category_name="", subcategory_name=""):
-        logging.info(f"Starting scrape_toolify_subcategory for URL: {subcategory_url}, category: {category_name}, "
+        logger.info(f"Starting scrape_toolify_subcategory for URL: {subcategory_url}, category: {category_name}, "
                      f"subcategory: {subcategory_name}")
         sub_data = []
 
         try:
-            logging.info(f"Fetching subcategory page: {subcategory_url}")
+            logger.info(f"Fetching subcategory page: {subcategory_url}")
             res = requests.get(subcategory_url, timeout=50)
             res.raise_for_status()
-            logging.info(f"Successfully fetched subcategory page, status code: {res.status_code}")
+            logger.info(f"Successfully fetched subcategory page, status code: {res.status_code}")
         except requests.exceptions.RequestException as e:
-            logging.error(f"Failed to fetch subcategory page: {e}")
+            logger.error(f"Failed to fetch subcategory page: {e}")
             return sub_data
 
         try:
-            logging.info("Starting HTML parsing for subcategory")
+            logger.info("Starting HTML parsing for subcategory")
             soup = bs4.BeautifulSoup(res.text, 'html.parser')
             table = soup.find_all('div', class_='tool-item mb-10 border border-2 rounded-md overflow-hidden')
-            logging.info(f"Found {len(table)} tool items in subcategory")
+            logger.info(f"Found {len(table)} tool items in subcategory")
 
             for i, row in enumerate(table):
-                logging.debug(f"Processing tool item {i + 1}/{len(table)}")
+                logger.debug(f"Processing tool item {i + 1}/{len(table)}")
                 try:
                     row_class = row.find('div', class_='tool-card bg-white p-6 flex gap-4 items-center')
                     agent = row_class.find('div',
@@ -509,16 +496,16 @@ class AIToolsScraper:
                     }
 
                     sub_data.append(tool_data)
-                    logging.debug(f"Successfully extracted tool: {name}")
+                    logger.debug(f"Successfully extracted tool: {name}")
 
 
                 except AttributeError as e:
-                    logging.warning(f"Could not parse tool item {i + 1}: {e}")
+                    logger.warning(f"Could not parse tool item {i + 1}: {e}")
 
         except Exception as e:
-            logging.error(f"Unexpected parsing error in subcategory scraping: {e}")
+            logger.error(f"Unexpected parsing error in subcategory scraping: {e}")
 
-        logging.info(
+        logger.info(
             f"scrape_toolify_subcategory completed. Extracted {len(sub_data)} tools from category '{category_name}'")
         return sub_data
 
@@ -549,7 +536,7 @@ class AIToolsScraper:
                     result = future.result()
                     self.save_tools(result)
                     all_tools.extend(result)
-                    logging.debug(f"Saved tool data for: {subcat_name}")
+                    logger.debug(f"Saved tool data for: {subcat_name}")
                     print(f"[DONE] Scraped {len(result)} tools from: {subcat_name}")
                 except Exception as e:
                     print(f"[ERROR] Failed scraping {subcat_name}: {e}")

@@ -1,13 +1,15 @@
-import pytest
-from idempotent_etl_job import (read_data, remove_hashtags, clean_data,
-                                transform_data, merging_dfs, run_basic_etl)
-
-
 """
 - test for duplicates.
 - test for invalid rows.
 - test for correct upserts.
 """
+from utils.utils import fetch_db_records
 
-def test_read_data():
+
+def test_duplicates():
+    db_data = fetch_db_records()    
+    assert db_data['name'].duplicated().count() == 0
+
+def test_invalid_rows():
+    db_data = fetch_db_records()
     pass

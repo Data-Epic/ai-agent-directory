@@ -4,20 +4,22 @@ Utils function for ETL Job.
 Name: Arowosegbe Victor Iyanuoluwa
 Email: iyanuvicky@gmail.com
 Github: https://github.com/Iyanuvicky22/Projects
+*** remove created_at()
 """
+
 from pathlib import Path
 import os
 from datetime import datetime, timezone
-
 import boto3
 from dotenv import load_dotenv
 from utils.logger_config import logger
+from models import connect_db
 import pandas as pd
 
-load_dotenv()
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-AWS_SECRET_KEY = os.environ.get("AWS_SECRET_KEY")
-AWS_REGION = os.environ.get("AWS_REGION")
+load_dotenv(dotenv_path='.env')
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
+AWS_REGION = os.getenv("AWS_REGION")
 s3 = boto3.client("s3", region_name=AWS_REGION,
                   aws_access_key_id=AWS_ACCESS_KEY_ID,
                   aws_secret_access_key=AWS_SECRET_KEY)
@@ -57,7 +59,7 @@ def read_data(source_path: str) -> pd.DataFrame:
 
 def remove_hashtags(tags):
     """
-    Method to clean tags column from "https://aitoolsdirectory.com/"
+    Method to clean category column from "https://aitoolsdirectory.com/"
     Args:
         tags (Series): Column to be cleaned
 
@@ -96,8 +98,8 @@ def clean_data(df):
         new_df = df.dropna()
         new_df = new_df.reset_index(drop=True)
 
-        if "tags" in df.columns:
-            new_df["tags"] = new_df["tags"].apply(remove_hashtags)
+        if "category" in df.columns:
+            new_df["category"] = new_df["category"].apply(remove_hashtags)
         else:
             pass
 
@@ -152,36 +154,33 @@ def transform_data(df: pd.DataFrame, source=None) -> pd.DataFrame:
             df["source"] = source
 
         if "created_at" in df.columns:
-            if df["created_at"] is not None:
+            if df['created_at'] is not None:
                 pass
             else:
-                df["created_at"] = None
+                df["created_at"] = datetime.now().strftime("%Y-%m-%d")
         else:
-            df["created_at"] = None
-        if "updated_at" in df.columns:
-            if df["updated_at"] is not None:
-                pass
-            else:
-                df["updated_at"] = None
-        else:
-            df["updated_at"] = None
+            df["created_at"] = datetime.now().strftime("%Y-%m-%d")
+
+        df["updated_at"] = datetime.now().strftime("%Y-%m-%d")
 
         if "trending" not in df.columns:
-            df["trending"] = None
+            df["trending"] = 0
+            # df["trending"] = df["trending"].notna().astype(bool)
         else:
-            df["trending"] = df['trending'].apply(
-                lambda x: False if x == "Low" else True
+            df["trending"] = df["trending"].apply(
+                lambda x: 0 if x == "Low" else 1
             )
-        df["trending"] = df["trending"].notna().astype(bool)
+        df["trending"] = 0
 
         trans_df = df.rename(columns={"url": "homepage_url", "tags": "category"})
 
         trans_df["created_at"] = pd.to_datetime(
-            trans_df["created_at"], format="%Y-%M-%d", errors="coerce"
+            trans_df["created_at"], format="%Y-%m-%d", errors="coerce"
         )
         trans_df["updated_at"] = pd.to_datetime(
-            trans_df["updated_at"], format="%Y-%M-%d", errors="coerce"
+            trans_df["updated_at"], format="%Y-%m-%d", errors="coerce"
         )
+        trans_df = trans_df.drop_duplicates(subset=['name'], keep='last')
 
         logger.info("Data successfully transformed!")
     except Exception as e:
@@ -197,12 +196,23 @@ def merging_dfs(new_df, existing_df) -> pd.DataFrame:
     """
     try:
         merged_df = pd.merge(new_df, existing_df, how="outer")
-        merged_df.drop_duplicates(subset="name", inplace=True)
+        merged_df.drop_duplicates(subset=[
+            "name", "homepage_url"
+            ], inplace=True)
         merged_df = merged_df.reset_index(drop=True)
-        logger.info("Seed DF and Scraped DF successfully merged!")
+        logger.info("Existing DB Data and Scraped Data successfully merged!")
     except Exception as e:
         logger.error("Error merging DFs: %s", e, exc_info=True)
     return merged_df
+
+
+def fetch_db_records():
+    session, engine = connect_db()
+
+    with engine.connect() as conn:
+        db_df = pd.read_sql("SELECT * from agents", con=conn)
+        conn.commit()
+    return db_df
 
 
 def dump_raw_data_to_s3(file_path: str):
