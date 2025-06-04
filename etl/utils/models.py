@@ -16,7 +16,7 @@ DB_PORT = os.getenv("DB_PORT")
 DB_NAME = os.getenv("DB_NAME")
 
 DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-
+print(DB_NAME)
 Base = declarative_base()
 
 expected_schema = {
@@ -36,7 +36,6 @@ def connect_db():
     Database connector
     """
     try:
-        print(DB_URL)
         engine = create_engine(DB_URL)
         Session = sessionmaker(bind=engine, autoflush=False)
         Base.metadata.create_all(engine)
