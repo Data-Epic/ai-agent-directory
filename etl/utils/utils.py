@@ -157,11 +157,11 @@ def transform_data(df: pd.DataFrame, source=None) -> pd.DataFrame:
             if df['created_at'] is not None:
                 pass
             else:
-                df["created_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                df["created_at"] = datetime.now().strftime("%Y-%m-%d")
         else:
-            df["created_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            df["created_at"] = datetime.now().strftime("%Y-%m-%d")
 
-        df["updated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        df["updated_at"] = datetime.now().strftime("%Y-%m-%d")
 
         if "trending" not in df.columns:
             df["trending"] = 0
@@ -175,12 +175,12 @@ def transform_data(df: pd.DataFrame, source=None) -> pd.DataFrame:
         trans_df = df.rename(columns={"url": "homepage_url", "tags": "category"})
 
         trans_df["created_at"] = pd.to_datetime(
-            trans_df["created_at"], format="%Y-%m-%d %H:%M:%S", errors="coerce"
+            trans_df["created_at"], format="%Y-%m-%d", errors="coerce"
         )
         trans_df["updated_at"] = pd.to_datetime(
-            trans_df["updated_at"], format="%Y-%m-%d %H:%M:%S", errors="coerce"
+            trans_df["updated_at"], format="%Y-%m-%d", errors="coerce"
         )
-        trans_df = trans_df.drop_duplicates(subset=['name', 'homepage_url'])
+        trans_df = trans_df.drop_duplicates(subset=['name'], keep='last')
 
         logger.info("Data successfully transformed!")
     except Exception as e:

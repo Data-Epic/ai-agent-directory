@@ -1,17 +1,10 @@
 import os
 from dotenv import load_dotenv
-from sqlalchemy import (
-    create_engine,
-    Column,
-    String,
-    Text,
-    Boolean,
-    DateTime,
-    func,
-    Integer,
-)
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy.exc import SQLAlchemyError
+import psycopg2
+from psycopg2.extras import execute_values
 import pandas as pd
 from utils.logger_config import logger
 
@@ -26,6 +19,17 @@ DB_NAME = os.getenv("DB_NAME")
 DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 Base = declarative_base()
+
+expected_schema = {
+    'name': str,
+    'description': str,
+    'homepage_url': str,
+    'category': str,
+    'source': str,
+    'trending': int,
+    'created_at': 'datetime64[ns]',
+    'updated_at': 'datetime64[ns]'
+}
 
 
 def connect_db():
@@ -42,66 +46,47 @@ def connect_db():
     return Session, engine
 
 
-class AiAgent(Base):
+def enforce_schema(df: pd.DataFrame, schema: dict) -> pd.DataFrame:
+    for col, dtype in schema.items():
+        if col not in df.columns:
+            raise ValueError(f"Missing column: '{col}'")
+        df[col] = df[col].astype(dtype)
+    return df[list(schema.keys())]
+
+
+# 3. Function to insert or update records
+def upsert_agents(df: pd.DataFrame):
+    df = enforce_schema(df, expected_schema)
+    data = [tuple(row) for row in df.to_numpy()]
+    columns = list(expected_schema.keys())
+
+    insert_query = f"""
+        INSERT INTO agents ({', '.join(columns)})
+        VALUES %s
+        ON CONFLICT (name)
+        DO UPDATE SET
+            description = EXCLUDED.description,
+            homepage_url = EXCLUDED.homepage_url,
+            category = EXCLUDED.category,
+            source = EXCLUDED.source,
+            trending = EXCLUDED.trending,
+            updated_at = NOW();
     """
-    Agents table model creation
-    Args:
-        Base (): SQLAlchemy Base model
-    """
 
-    __tablename__ = "ai_agents"
+    conn_info = {
+        'dbname': DB_NAME,
+        'user': DB_USER,
+        'password': DB_PASSWORD,
+        'host': DB_HOST,
+        'port': DB_PORT
+    }
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String, nullable=False, index=True)
-    description = Column(Text)
-    homepage_url = Column(String)
-    category = Column(String)
-    source = Column(String)
-    trending = Column(Boolean, default=False)
-    created_at = Column(DateTime, server_default=func.now(), nullable=False)
-    updated_at = Column(
-        DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
-
-
-def load_data(df: pd.DataFrame):
-    """
-    Function to load data into the Database (PostgreSQL).
-    Args:
-        df (pd.DataFrame): Cleaned and Transformed data to be loaded.
-    """
-    Session, engine = connect_db()
-    data = df
-
-    with Session.begin() as session:
-        try:
-            for _, row in data.iterrows():
-                ai_tool = session.query(AiAgent).filter_by(
-                    name=str(row["name"]),
-                    homepage_url=row['homepage_url']                                 
-                    ).first()
-
-                if ai_tool:
-                    ai_tool.description = row.get("description", ai_tool.description)
-                    ai_tool.category = row.get("category", ai_tool.category)
-                    ai_tool.source = row.get("source", ai_tool.source)
-                    ai_tool.updated_at = row.get("updated_at", ai_tool.updated_at)
-                else:
-                    ai_tool = AiAgent(
-                        name=str(row["name"]),
-                        description=str(row["description"]),
-                        homepage_url=row["homepage_url"],
-                        category=row["category"],
-                        source=row["source"],
-                        trending=row["trending"],
-                        created_at=row["created_at"],
-                        updated_at=row["updated_at"],
-                    )
-                    session.add(ai_tool)
-            session.commit()
-            logger.info("Data successfully loaded in database!")
-        except Exception as e:
-            logger.error("Data upload failed: %s", e, exc_info=True)
-            session.rollback()
-        finally:
-            session.close()
-
+    try:
+        with psycopg2.connect(**conn_info) as conn:
+            with conn.cursor() as cursor:
+                execute_values(cursor, insert_query, data)
+            conn.commit()
+        logger.info("Upsert completed successfully.")
+    except Exception as e:
+        logger.error('Data upsert failed! %s', e, exc_info=True)
+        raise RuntimeError(f"Upsert failed: {e}")
