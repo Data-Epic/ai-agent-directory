@@ -128,6 +128,25 @@ def extract_tool_data(element):
     return tool_data
 
 
+def save_tools(tools):
+    if not tools:
+        logger.warning("No tools to save.")
+        return
+
+    file_exists = os.path.isfile(filename)
+    fieldnames = tools[0].keys()
+
+    try:
+        with open(filename, mode='a', newline='', encoding='utf-8') as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            if not file_exists:
+                writer.writeheader()
+            writer.writerows(tools)
+        logger.info(f"Appended {len(tools)} tools to {filename}")
+    except Exception as e:
+        logger.error(f"Failed to append tools to CSV: {e}")
+
+
 class AIToolsScraper:
     def __init__(self, headless=True, wait_time=10):
         self.wait_time = wait_time
@@ -367,24 +386,6 @@ class AIToolsScraper:
 
         return all_tools
 
-    def save_tools(self, tools):
-        if not tools:
-            logger.warning("No tools to save.")
-            return
-        file_exists = os.path.isfile(filename)
-        fieldnames = tools[0].keys()
-
-        try:
-            with open(filename, mode='a', newline='', encoding='utf-8') as f:
-                writer = csv.DictWriter(f, fieldnames=fieldnames)
-
-                # Only write header if file is new
-                if not file_exists:
-                    writer.writeheader()
-            logger.info(f"Appended {len(tools)} tools to {filename}")
-        except Exception as e:
-            logger.error(f"Failed to append tools to CSV: {e}")
-
     def close(self):
         if hasattr(self, "driver"):
             self.driver.quit()
@@ -535,7 +536,7 @@ class AIToolsScraper:
                 subcat_name = future_to_subcat[future]
                 try:
                     result = future.result()
-                    self.save_tools(result)
+                    save_tools(result)
                     all_tools.extend(result)
                     logger.debug(f"Saved tool data for: {subcat_name}")
                     print(f"[DONE] Scraped {len(result)} tools from: {subcat_name}")
@@ -566,7 +567,7 @@ def main(all_page: int):
             print(f"SCRAPING COMPLETED - Found {len(tools)} unique AI tools")
             print(f"{'=' * 60}")
 
-            scraper.save_tools(tools)
+            save_tools(tools)
 
         else:
             print("No tools were scraped. The website structure might have changed.")

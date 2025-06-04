@@ -23,7 +23,7 @@ AWS_REGION = os.environ.get('AWS_REGION')
 s3 = boto3.client("s3", region_name=AWS_REGION,
                   aws_access_key_id=AWS_ACCESS_KEY_ID,
                   aws_secret_access_key=AWS_SECRET_KEY)
-
+print(AWS_REGION)
 bucket_name = 'scraped-ai-agent'
 
 def read_data(source_path: str) -> pd.DataFrame:
@@ -220,8 +220,10 @@ def dump_raw_data_to_s3(file_path: str):
         s3.upload_file(file_path, bucket_name, f"{os.path.basename(file_path)}")
         logger.info(f"Successfully upload to s3://{bucket_name}/{file_path}")
         os.remove(file_path)
+        print(f"Successfully upload to s3://{bucket_name}/{file_path}")
     except Exception as e:
         logger.error(f"Uploading failed: {e}")
+        print(f"Uploading failed: {e}")
 
 
 def fetch_latest_csv_from_s3(download_dir='downloads'):
