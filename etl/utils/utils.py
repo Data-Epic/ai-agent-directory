@@ -25,7 +25,6 @@ s3 = boto3.client("s3", region_name=AWS_REGION,
                   aws_secret_access_key=AWS_SECRET_KEY)
 
 bucket_name = 'scraped-ai-agent'
-print(AWS_REGION)
 
 def read_data(source_path: str) -> pd.DataFrame:
     """

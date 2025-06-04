@@ -468,7 +468,7 @@ class AIToolsScraper:
         try:
             logger.info("Starting HTML parsing for subcategory")
             soup = bs4.BeautifulSoup(res.text, 'html.parser')
-            table = soup.find_all('div', class_='tool-item mb-10 border border-2 rounded-md overflow-hidden')
+            table = soup.find_all('div', class_='mb-12')
             logger.info(f"Found {len(table)} tool items in subcategory")
 
             for i, row in enumerate(table):
