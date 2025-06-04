@@ -9,14 +9,14 @@ import pandas as pd
 from utils.logger_config import logger
 
 load_dotenv()
-DB_USER = os.environ.get('DB_USER') or os.getenv("DB_USER")
-DB_PASSWORD = os.environ.get('DB_PASSWORD') or os.getenv("DB_PASSWORD")
-DB_HOST = os.environ.get('DB_HOST') or os.getenv("DB_HOST")
-DB_PORT = os.environ.get('DB_PORT') or os.getenv("DB_PORT")
-DB_NAME = os.environ.get('DB_NAME') or os.getenv("DB_NAME")
+DB_USER = os.environ.get('DB_USER')# or os.getenv("DB_USER")
+DB_PASSWORD = os.environ.get('DB_PASSWORD')# or os.getenv("DB_PASSWORD")
+DB_HOST = os.environ.get('DB_HOST') #or os.getenv("DB_HOST")
+DB_PORT = os.environ.get('DB_PORT')# or os.getenv("DB_PORT")
+DB_NAME = os.environ.get('DB_NAME')# or os.getenv("DB_NAME")
 
 DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-print(DB_NAME)
+logger.info(DB_NAME)
 Base = declarative_base()
 
 expected_schema = {
