@@ -19,7 +19,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from utils.utils import dump_raw_data_to_s3
 
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-filename = f'data/{timestamp}_ai_tools_scraped.csv'
+filename = f'ai-agent-directory/etl/data/{timestamp}_ai_tools_scraped.csv'
 
 
 def extract_tool_data(element):

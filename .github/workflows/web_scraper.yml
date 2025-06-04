@@ -39,7 +39,6 @@ jobs:
         AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
         AWS_REGION: ${{ secrets.AWS_REGION }}
       run: poetry run python etl/web_scraper.py
-      working-directory: ./etl
 
 
     - name: Run Idempotent etl jobs
@@ -50,7 +49,6 @@ jobs:
         DB_PORT: ${{ secrets.DB_PORT }}
         DB_HOST: ${{ secrets.DB_HOST }}
       run: poetry run python etl/idempotent_etl_job.py
-      working-directory: ./etl
 
 
 
