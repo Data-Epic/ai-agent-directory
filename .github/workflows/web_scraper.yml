@@ -36,18 +36,18 @@ jobs:
     - name: Run the scraper
       run: poetry run python etl/web_scraper.py
       env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
-        AWS_REGION: ${{ secrets.AWS_REGION }}
+        AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_KEY: ${{ vars.AWS_SECRET_KEY }}
+        AWS_REGION: ${{ vars.AWS_REGION }}
 
     - name: Run Idempotent etl jobs
       run: poetry run python etl/idempotent_etl_job.py
       env:
-        DB_NAME: ${{ secrets.DB_NAME }}
-        DB_USER: ${{ secrets.DB_USER }}
-        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        DB_PORT: ${{ secrets.DB_PORT }}
-        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_NAME: ${{ vars.DB_NAME }}
+        DB_USER: ${{ vars.DB_USER }}
+        DB_PASSWORD: ${{ vars.DB_PASSWORD }}
+        DB_PORT: ${{ vars.DB_PORT }}
+        DB_HOST: ${{ vars.DB_HOST }}
 
 
     - name: Commit scraped data
