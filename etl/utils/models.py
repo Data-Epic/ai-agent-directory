@@ -8,8 +8,7 @@ from psycopg2.extras import execute_values
 import pandas as pd
 from utils.logger_config import logger
 
-load_dotenv(dotenv_path=".env")
-
+load_dotenv()
 DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_HOST = os.getenv("DB_HOST")
@@ -37,13 +36,14 @@ def connect_db():
     Database connector
     """
     try:
+        print(DB_URL)
         engine = create_engine(DB_URL)
         Session = sessionmaker(bind=engine, autoflush=False)
         Base.metadata.create_all(engine)
         logger.info("Database succesfully connected to.")
-    except SQLAlchemyError as e:
-        logger.error("Databse connection error: %s", e, exc_info=True)
-    return Session, engine
+        return Session, engine
+    except Exception as e:
+        logger.error(f"Database connection error: {str(e)}")
 
 
 def enforce_schema(df: pd.DataFrame, schema: dict) -> pd.DataFrame:
