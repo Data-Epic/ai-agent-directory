@@ -20,7 +20,7 @@ def run_basic_etl() -> pd.DataFrame:
         pd.DataFrame: Ai tools data to run etl job on.
     """
     # download latest file from s3
-    scraped_data_source = "data/seeded_ai_agents.csv"  #fetch_latest_csv_from_s3()
+    scraped_data_source = fetch_latest_csv_from_s3()
 
     scraped_df = read_data(scraped_data_source)
 

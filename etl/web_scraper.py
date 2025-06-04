@@ -21,6 +21,7 @@ from utils.utils import dump_raw_data_to_s3
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 filename = f'data/{timestamp}_ai_tools_scraped.csv'
 
+
 def extract_tool_data(element):
     tool_data = {}
 
@@ -452,7 +453,7 @@ class AIToolsScraper:
 
     def scrape_toolify_subcategory(self, subcategory_url, category_name="", subcategory_name=""):
         logger.info(f"Starting scrape_toolify_subcategory for URL: {subcategory_url}, category: {category_name}, "
-                     f"subcategory: {subcategory_name}")
+                    f"subcategory: {subcategory_name}")
         sub_data = []
 
         try:
