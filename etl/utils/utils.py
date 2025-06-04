@@ -12,8 +12,8 @@ import os
 from datetime import datetime, timezone
 import boto3
 from dotenv import load_dotenv
-from logger_config import logger
-from models import connect_db
+from utils.logger_config import logger
+from utils.models import connect_db
 import pandas as pd
 
 load_dotenv(dotenv_path='.env')
