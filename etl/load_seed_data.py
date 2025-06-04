@@ -7,7 +7,7 @@ GitHub: https://github.com/Iyanuvicky22/projects
 """
 
 from utils.utils import read_data, transform_data
-from models import upsert_agents
+from utils.models import upsert_agents
 
 seed_data_source = r"C:\Users\APIN PC\OneDrive\Documents\DS\DE_Inter\data_epic_capstone\etl\data\seeded_ai_agents.csv"
 
