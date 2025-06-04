@@ -1,12 +1,15 @@
+import sys
+import os
+import uuid  
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from datetime import datetime
 from uuid import uuid4
-
-from sqlalchemy import UUID
-
-from ..core.models.agent import Agent
-from ..core.models.highlight import Highlight
-from ..core.models.review import Review
-from ..core.models.user import User
+from core.models.agent import Agent
+from core.models.highlight import Highlight
+from core.models.review import Review
+from core.models.user import User
 
 
 def test_create_user_object():
@@ -22,7 +25,7 @@ def test_create_user_object():
         updated_at=datetime.now(),
     )
 
-    assert isinstance(user.id, UUID)
+    assert isinstance(user.id, uuid.UUID)
     assert user.first_name == "Samuel"
     assert user.last_name == "John"
     assert user.username == "user123"

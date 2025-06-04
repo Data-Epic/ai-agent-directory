@@ -7,9 +7,8 @@ https://docs.sqlalchemy.org/en/14/core/defaults.html#client-invoked-sql-expressi
 """
 
 from core.database import Base
-from sqlalchemy import VARCHAR, Column, DateTime, Integer, String, func
+from sqlalchemy import VARCHAR, Column, DateTime, Integer, String, func, text
 from sqlalchemy.orm import relationship
-from sqlalchemy import text
 
 
 class Agent(Base):
@@ -18,10 +17,12 @@ class Agent(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
     description = Column(VARCHAR(1000))
-    homepage_url = Column(VARCHAR(100))
+    homepage_url = Column(VARCHAR(300))
     category = Column(VARCHAR(1000))
     source = Column(VARCHAR(1000))
-    trending = Column(Integer, default=0,server_default=text("0"),nullable=False)
+    trending = Column(
+        Integer, default=0, server_default=text("0"), nullable=False
+    )
     created_at = Column(DateTime, default=func.now(), nullable=False)
     updated_at = Column(
         DateTime, default=func.now(), onupdate=func.now(), nullable=False

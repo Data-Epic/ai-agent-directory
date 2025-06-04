@@ -8,7 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.9"
 sqlalchemy = "^2.0.41"
-psycopg2-binary = "^2.9.0" 
+psycopg2-binary = "^2.9.0"
 fastapi = "^0.115.12"
 uvicorn = "^0.34.2"
 python-dotenv = "^1.1.0"
@@ -23,6 +23,7 @@ pydantic = {extras = ["email"], version = "^2.11.5"}
 pytz = "^2025.2"
 pre-commit = "^4.2.0"
 pylint = "^3.3.7"
+pre-commit-hooks = "^5.0.0"
 
 
 [build-system]
