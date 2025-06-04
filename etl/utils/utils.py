@@ -12,7 +12,7 @@ import os
 from datetime import datetime, timezone
 import boto3
 from dotenv import load_dotenv
-from utils.logger_config import logger
+from logger_config import logger
 from models import connect_db
 import pandas as pd
 
@@ -79,9 +79,9 @@ def remove_hashtags(tags):
             clean = clean.upper()
         else:
             clean = clean.lower().capitalize()
+        return clean
     except Exception as e:
         logger.error("Error Raised at tags column cleaning:  %s", e, exc_info=True)
-    return clean
 
 
 def clean_data(df):
@@ -112,9 +112,9 @@ def clean_data(df):
         )
         logger.info("Tags Column Successfully cleaned.")
         logger.info("Data successfully cleaned!")
+        return new_df
     except Exception as e:
         logger.error("Error Raised at full cleaning process: %s", e, exc_info=True)
-    return new_df
 
 
 def get_created_at(filepath: str) -> str:
@@ -129,9 +129,9 @@ def get_created_at(filepath: str) -> str:
     try:
         created_timestamp = os.path.getctime(filepath)
         created_date = datetime.fromtimestamp(created_timestamp)
+        return created_date.strftime("%Y-%M-%d")
     except Exception as e:
         logger.error(f"Error Raised: {e}!", exc_info=True)
-    return created_date.strftime("%Y-%M-%d")
 
 
 def transform_data(df: pd.DataFrame, source=None) -> pd.DataFrame:
@@ -183,9 +183,9 @@ def transform_data(df: pd.DataFrame, source=None) -> pd.DataFrame:
         trans_df = trans_df.drop_duplicates(subset=['name'], keep='last')
 
         logger.info("Data successfully transformed!")
+        return trans_df
     except Exception as e:
         logger.error("Error Raised at transformation: %s", e, exc_info=True)
-    return trans_df
 
 
 def merging_dfs(new_df, existing_df) -> pd.DataFrame:
@@ -198,12 +198,12 @@ def merging_dfs(new_df, existing_df) -> pd.DataFrame:
         merged_df = pd.merge(new_df, existing_df, how="outer")
         merged_df.drop_duplicates(subset=[
             "name", "homepage_url"
-            ], inplace=True)
+        ], inplace=True)
         merged_df = merged_df.reset_index(drop=True)
         logger.info("Existing DB Data and Scraped Data successfully merged!")
+        return merged_df
     except Exception as e:
         logger.error("Error merging DFs: %s", e, exc_info=True)
-    return merged_df
 
 
 def fetch_db_records():
@@ -226,7 +226,6 @@ def dump_raw_data_to_s3(file_path: str):
 
 
 def fetch_latest_csv_from_s3(download_dir='downloads'):
-
     try:
         response = s3.list_objects_v2(Bucket=bucket_name)
         contents = response.get('Contents', [])

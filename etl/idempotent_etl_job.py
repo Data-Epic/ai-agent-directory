@@ -13,7 +13,6 @@ from utils.utils import fetch_latest_csv_from_s3, fetch_db_records, merging_dfs
 from utils.logger_config import logger
 
 
-
 def run_basic_etl() -> pd.DataFrame:
     """
     Basic ETL Job.
@@ -21,14 +20,14 @@ def run_basic_etl() -> pd.DataFrame:
         pd.DataFrame: Ai tools data to run etl job on.
     """
     # download latest file from s3
-    scraped_data_source = fetch_latest_csv_from_s3()
+    scraped_data_source = "data/seeded_ai_agents.csv"  #fetch_latest_csv_from_s3()
 
     scraped_df = read_data(scraped_data_source)
 
     clean_scraped_df = clean_data(scraped_df)
 
     trans_scraped_df = transform_data(clean_scraped_df)
-    
+
     existing_db_df = fetch_db_records()
 
     final_df = merging_dfs(trans_scraped_df, existing_db_df)
@@ -42,4 +41,3 @@ def run_basic_etl() -> pd.DataFrame:
 
 if __name__ == "__main__":
     run_basic_etl()
-
