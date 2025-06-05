@@ -55,31 +55,31 @@ backend/
 ├── .github_workflows/
 |  ├── precommit-hook.yml
 |  ├── app/
-|    ├── api/
-|      ├── route/  # FastAPI app entry
-|        ├── __init__.py
-|        ├── agent.py
-|        ├── highlight.py
-|        ├── login.py  # JWT auth logic
-|        ├── user.py
-|      ├── schema/
-|        ├── __init__.py
-|        ├── validate.py
-|      ├── utils/
-|        ├── __init__.py
-|      ├── core/
-│        ├── models/  # SQLAlchemy models
-|          ├── __init__.py
-|          ├── agent.py
-|          ├── highlight.py
-|          ├── rating.py
-|          ├── review.py
-|          ├── user.py
-│        ├── __init__.py
-│        ├── database.py  # DB connection/session
-|        ├── tests/
-│          ├── test_models.py
-|        ├── app.py
+|  |  ├── api/
+|  |  |  ├── route/  # FastAPI app entry
+|  |  |  |  ├── __init__.py
+|  |  |  |  ├── agent.py
+|  |  |  |  ├── highlight.py
+|  |  |  |  ├── login.py  # JWT auth logic
+|  |  |  |  ├── user.py
+|  |  |  ├── schema/
+|  |  |  |  ├── __init__.py
+|  |  |  |  ├── validate.py
+|  |  |  ├── utils/
+|  |  |  |  ├── __init__.py
+|  |  |  ├── core/
+│  |  |  |  ├── models/  # SQLAlchemy models
+|  |  |  |  |  ├── __init__.py
+|  |  |  |  |  ├── agent.py
+|  |  |  |  |  ├── highlight.py
+|  |  |  |  |  ├── rating.py
+|  |  |  |  |  ├── review.py
+|  |  |  |  |  ├── user.py
+│  |  |  |  ├── __init__.py
+│  |  |  |  ├── database.py  # DB connection/session
+|  |  |  ├── tests/
+│  |  |  |  ├── test_models.py
+|  |  ├── app.py
 |  ├── .env
 |  ├── .pre-commit-config.yaml
 |  ├── Readme.md
