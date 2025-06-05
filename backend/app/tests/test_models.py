@@ -1,11 +1,12 @@
-import sys
 import os
-import uuid  
+import sys
+import uuid
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from datetime import datetime
 from uuid import uuid4
+
 from core.models.agent import Agent
 from core.models.highlight import Highlight
 from core.models.review import Review

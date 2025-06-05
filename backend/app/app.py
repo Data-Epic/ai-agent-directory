@@ -4,6 +4,7 @@ necessary routers for handling user, agent, review, and highlight routes.
 """
 
 import uvicorn
+import os
 from api.route.agent import agent_router
 from api.route.highlight import highlight_router
 from api.route.review import review_router
@@ -21,28 +22,29 @@ from fastapi_pagination import add_pagination
 app = FastAPI()
 
 
-Base.metadata.create_all(bind=engine)
+if os.getenv("TESTING") != "true":
+    Base.metadata.create_all(bind=engine)
 
-# Setup CORS
-origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
-    "http://localhost",
-    "http://localhost:8090",
-]
+    # Setup CORS
+    origins = [
+        "http://localhost.tiangolo.com",
+        "https://localhost.tiangolo.com",
+        "http://localhost",
+        "http://localhost:8090",
+    ]
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 
-@app.on_event("startup")
-async def startup_event():
-    create_initial_admin()
+    @app.on_event("startup")
+    async def startup_event():
+        create_initial_admin()
 
 
 # Include routers
