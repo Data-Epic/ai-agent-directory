@@ -48,7 +48,30 @@ A backend-first MVP platform for discovering and managing AI tools. Users can br
 | Scheduler | `schedule` |
 
 ---
+🗂 Project Structure
+backend/
+├── app/
+│   ├── models.py         # SQLAlchemy models
+│   ├── main.py           # FastAPI app entry
+│   ├── auth.py           # JWT auth logic
+│   ├── database.py       # DB connection/session
+│   ├── deps.py           # Dependency injection (get_db, current_user)
+│   ├── seed.py           # Agent seed script
+│   ├── routers/
+│   │   ├── users.py
+│   │   ├── agents.py
+│   │   ├── highlights.py
+│   │   ├── reviews.py
+│   │   ├── analytics.py
+├── alembic/              # DB migrations
+├── scripts/              # ETL scheduling script
+├── tests/                # Pytest-based tests
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+├── .env
 
+---
 ## 🗂 Project Structure
 
 backend/
