@@ -50,7 +50,7 @@ A backend-first MVP platform for discovering and managing AI tools. Users can br
 ---
 
 ## 🗂 Project Structure
-├── backend
+|├── backend
 |    ├── .github/workflows/
 |      ├── precommit-hook.yml
 |    ├── app/
