@@ -50,41 +50,41 @@ A backend-first MVP platform for discovering and managing AI tools. Users can br
 ---
 
 ## 🗂 Project Structure
-|├── backend
-|    ├── .github/workflows/
-|      ├── precommit-hook.yml
-|    ├── app/
-|      ├── api
-|        ├── route  # FastAPI app entry
+backend
+|├── .github_workflows/
+|  ├── precommit-hook.yml
+|  ├── app/
+|    ├── api/
+|      ├── route/  # FastAPI app entry
+|        ├── __init__.py
+|        ├── agent.py
+|        ├── highlight.py
+|        ├── login.py  # JWT auth logic
+|        ├── user.py
+|      ├── schema/
+|        ├── __init__.py
+|        ├── validate.py
+|      ├── utils/
+|        ├── __init__.py
+|      ├── core/
+│        ├── models/  # SQLAlchemy models
 |          ├── __init__.py
 |          ├── agent.py
 |          ├── highlight.py
-|          ├── login.py  # JWT auth logic
+|          ├── rating.py
+|          ├── review.py
 |          ├── user.py
-|        ├── schema
-|          ├── __init__.py
-|          ├── validate.py
-|        ├── utils
-|          ├── __init__.py
-|        ├── core
-│          ├── models  # SQLAlchemy models
-|            ├── __init__.py
-|            ├── agent.py
-|            ├── highlight.py
-|            ├── rating.py
-|            ├── review.py
-|            ├── user.py
-│          ├── __init__.py
-│          ├── database.py  # DB connection/session
-|        ├── tests
+│        ├── __init__.py
+│        ├── database.py  # DB connection/session
+|        ├── tests/
 │          ├── test_models.py
 |        ├── app.py
-|      ├── .env
-|      ├── .pre-commit-config.yaml
-|      ├── Readme.md
-|      ├── docker-compose.yml
-|      ├── pyproject.toml
-|      ├── pytest.ini
+|  ├── .env
+|  ├── .pre-commit-config.yaml
+|  ├── Readme.md
+|  ├── docker-compose.yml
+|  ├── pyproject.toml
+|  ├── pytest.ini
 
 ---
 
