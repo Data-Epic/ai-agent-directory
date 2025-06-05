@@ -11,6 +11,7 @@ from utils.models import upsert_agents
 import pandas as pd
 from utils.utils import fetch_latest_csv_from_s3, fetch_db_records, merging_dfs
 from utils.logger_config import logger
+from utils.models import DB_URL
 
 
 def run_basic_etl() -> pd.DataFrame:
@@ -41,3 +42,4 @@ def run_basic_etl() -> pd.DataFrame:
 
 if __name__ == "__main__":
     run_basic_etl()
+
