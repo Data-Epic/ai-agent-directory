@@ -1,9 +1,5 @@
 """
 Idempotent ETL Job Script.
-
-Name: Arowosegbe Victor Iyanuoluwa
-Email: iyanuvicky@gmail.com
-Github: https://github.com/Iyanuvicky22/Projects
 """
 from pathlib import Path
 from utils.utils import read_data, clean_data, transform_data
@@ -42,4 +38,3 @@ def run_basic_etl() -> pd.DataFrame:
 
 if __name__ == "__main__":
     run_basic_etl()
-

@@ -1,9 +1,5 @@
 """
 Seed Ai_tools data upload to database.
-
-Name: Arowosegbe Victor Iyanuoluwa\n
-Email: Iyanuvicky@gmail.com\n
-GitHub: https://github.com/Iyanuvicky22/projects
 """
 
 from utils.utils import read_data, transform_data
