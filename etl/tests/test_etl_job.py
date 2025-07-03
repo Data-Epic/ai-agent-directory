@@ -5,7 +5,6 @@
 """
 from utils.utils import fetch_db_records
 
-
 def test_duplicates():
     db_data = fetch_db_records()    
     assert db_data['name'].duplicated().count() == 0

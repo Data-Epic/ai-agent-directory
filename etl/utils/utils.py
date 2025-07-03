@@ -1,9 +1,6 @@
 """
 Utils function for ETL Job.
 
-Name: Arowosegbe Victor Iyanuoluwa
-Email: iyanuvicky@gmail.com
-Github: https://github.com/Iyanuvicky22/Projects
 *** remove created_at()
 """
 
